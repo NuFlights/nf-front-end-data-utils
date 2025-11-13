@@ -1,0 +1,29 @@
+{
+  "name": "nf-front-end-data-utils",
+  "version": "1.0.0",
+  "description": "Utility module for extracting attributes from IATA NDC documents",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "testOrderView": "node dist/OrderView/test/test.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "ndc",
+    "order",
+    "iata",
+    "ticket",
+    "utility"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "jmespath": "^0.16.0"
+  },
+  "devDependencies": {
+    "@types/jmespath": "^0.15.2",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
