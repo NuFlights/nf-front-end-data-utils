@@ -11,79 +11,79 @@ export interface MonetaryAmount {
     ref: string;
 }
 export interface TaxBreakdown {
-    tax_code: string | null;
+    taxCode: string | null;
     amount: number | null;
     currency: string | null;
-    tax_name: string | null;
-    tax_type: string | null;
+    taxName: string | null;
+    taxType: string | null;
     ref: string;
 }
 export interface LoyaltyProgram {
-    account_number: string | null;
-    program_code: string | null;
-    program_name: string | null;
+    accountNumber: string | null;
+    programCode: string | null;
+    programName: string | null;
     carrier: string | null;
     ref: string;
 }
 export interface BaggageAllowance {
-    piece_qty: number | null;
-    weight_value: number | null;
-    weight_unit: string | null;
+    pieceQty: number | null;
+    weightValue: number | null;
+    weightUnit: string | null;
     ref: string;
 }
 export interface SegmentInfo {
-    segment_ref_id: string | null;
+    segmentRefId: string | null;
     origin: string | null;
     destination: string | null;
     rbd: string | null;
-    departure_datetime: string | null;
-    coupon_status: string | null;
-    fare_basis_code: string | null;
-    baggage_allowance: BaggageAllowance | null;
-    coupon_number: string | null;
-    cabin_type_code?: string | null;
+    departureDatetime: string | null;
+    couponStatus: string | null;
+    fareBasisCode: string | null;
+    baggageAllowance: BaggageAllowance | null;
+    couponNumber: string | null;
+    cabinTypeCode?: string | null;
     ref: string;
 }
 export interface PassengerInfo {
-    pax_ref_id: string | null;
-    given_name: string | null;
+    paxRefId: string | null;
+    givenName: string | null;
     surname: string | null;
-    middle_name: string | null;
+    middleName: string | null;
     title: string | null;
     ptc: string | null;
-    loyalty_programs: LoyaltyProgram[];
+    loyaltyPrograms: LoyaltyProgram[];
     ref: string;
 }
 export interface TicketInfo {
-    ticket_number: string | null;
-    issue_date: string | null;
-    issue_time: string | null;
+    ticketNumber: string | null;
+    issueDate: string | null;
+    issueTime: string | null;
     passenger: PassengerInfo | null;
-    base_fare: MonetaryAmount;
-    total_tax: MonetaryAmount;
-    tax_breakdown: TaxBreakdown[];
-    total_amount: MonetaryAmount;
-    ticket_type: string | null;
+    baseFare: MonetaryAmount;
+    totalTax: MonetaryAmount;
+    taxBreakdown: TaxBreakdown[];
+    totalAmount: MonetaryAmount;
+    ticketType: string | null;
     segments: SegmentInfo[];
     reportingTypeCode: string | null;
     ref: string;
 }
 export interface IssuingOffice {
-    org_id: string | null;
-    org_name: string | null;
-    org_role: string | null;
-    sales_agent_id: string | null;
-    sales_branch_id: string | null;
+    orgId: string | null;
+    orgName: string | null;
+    orgRole: string | null;
+    salesAgentId: string | null;
+    salesBranchId: string | null;
     ref: string;
 }
 export interface OrderDetails {
-    booking_reference: string | null;
-    issuing_office: IssuingOffice;
+    bookingReference: string | null;
+    issuingOffice: IssuingOffice;
     pcc: string | null;
     ref: string;
 }
 export interface OrderSummary {
-    order_details: OrderDetails;
+    orderDetails: OrderDetails;
     tickets: TicketInfo[];
 }
 export interface ExtractionError {

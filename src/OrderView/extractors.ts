@@ -66,21 +66,21 @@ function extractIssuingOffice(data: any): IssuingOffice {
 
   if (agency && typeof agency === "object") {
     return {
-      org_id: agency.agencyId?.toString() || null,
-      org_name: null,
-      org_role: "ServicingAgency",
-      sales_agent_id: agency.iataNumber?.toString() || null,
-      sales_branch_id: null,
+      orgId: agency.agencyId?.toString() || null,
+      orgName: null,
+      orgRole: "ServicingAgency",
+      salesAgentId: agency.iataNumber?.toString() || null,
+      salesBranchId: null,
       ref: basePath,
     };
   }
 
   return {
-    org_id: null,
-    org_name: null,
-    org_role: null,
-    sales_agent_id: null,
-    sales_branch_id: null,
+    orgId: null,
+    orgName: null,
+    orgRole: null,
+    salesAgentId: null,
+    salesBranchId: null,
     ref: errorRef(basePath, "Servicing agency not found"),
   };
 }
@@ -109,8 +109,8 @@ export function extractOrderDetails(data: any): OrderDetails {
   const pcc = extractPCC(data);
 
   return {
-    booking_reference: bookingRef.value,
-    issuing_office: issuingOffice,
+    bookingReference: bookingRef.value,
+    issuingOffice: issuingOffice,
     pcc: pcc.value,
     ref: "iataOrderRetrieve.response",
   };
@@ -151,13 +151,13 @@ function extractPassengerInfo(
 
   if (!passenger || paxIndex < 0) {
     return {
-      pax_ref_id: Array.isArray(paxRefId) ? paxRefId[0] : paxRefId,
-      given_name: null,
+      paxRefId: Array.isArray(paxRefId) ? paxRefId[0] : paxRefId,
+      givenName: null,
       surname: null,
-      middle_name: null,
+      middleName: null,
       title: null,
       ptc: null,
-      loyalty_programs: [],
+      loyaltyPrograms: [],
       ref: errorRef(
         paxListPath,
         `Passenger not found for ref_id: ${refIds.join(", ")}`
@@ -192,9 +192,9 @@ function extractPassengerInfo(
   if (Array.isArray(passenger.loyaltyProgramAccount)) {
     passenger.loyaltyProgramAccount.forEach((program: any, idx: number) => {
       loyaltyPrograms.push({
-        account_number: program.accountNumber || null,
-        program_code: program.loyaltyProgram?.programCode || null,
-        program_name: program.loyaltyProgram?.programName || null,
+        accountNumber: program.accountNumber || null,
+        programCode: program.loyaltyProgram?.programCode || null,
+        programName: program.loyaltyProgram?.programName || null,
         carrier: program.loyaltyProgram?.carrier?.airlineDesigCode || null,
         ref: `${paxPath}.loyaltyProgramAccount[${idx}]`,
       });
@@ -202,13 +202,13 @@ function extractPassengerInfo(
   }
 
   return {
-    pax_ref_id: passenger.paxRefId || passenger.paxId,
-    given_name: givenNames || null,
+    paxRefId: passenger.paxRefId || passenger.paxId,
+    givenName: givenNames || null,
     surname: surname || null,
-    middle_name: middleNames || null,
+    middleName: middleNames || null,
     title: title || null,
     ptc: ptc || null,
-    loyalty_programs: loyaltyPrograms,
+    loyaltyPrograms: loyaltyPrograms,
     ref: paxPath,
   };
 }
@@ -258,14 +258,14 @@ function extractTaxBreakdown(
           const basePath = `ticketDocInfo[${ticketIndex}].fareDetail.farePriceType[${ptIdx}].price.taxSummary[${tsIdx}].tax[${taxIdx}]`;
 
           taxes.push({
-            tax_code: tax.taxCode || null,
+            taxCode: tax.taxCode || null,
             amount:
               tax.amount?.cdata !== undefined && tax.amount?.cdata !== null
                 ? Number(tax.amount.cdata)
                 : null,
             currency: tax.amount?.curCode || null,
-            tax_name: tax.taxName || null,
-            tax_type: tax.taxTypeCode || null,
+            taxName: tax.taxName || null,
+            taxType: tax.taxTypeCode || null,
             ref: basePath,
           });
         });
@@ -293,9 +293,9 @@ function extractBaggageAllowance(
 
   if (!Array.isArray(baggageList)) {
     return {
-      piece_qty: null,
-      weight_value: null,
-      weight_unit: null,
+      pieceQty: null,
+      weightValue: null,
+      weightUnit: null,
       ref: errorRef(baggageListPath, "Baggage allowance list not found"),
     };
   }
@@ -307,10 +307,9 @@ function extractBaggageAllowance(
       const baggagePath = `${baggageListPath}[${i}]`;
 
       return {
-        piece_qty: baggage.pieceAllowance?.totalQty || null,
-        weight_value:
-          baggage.weightAllowance?.[0]?.maximumWeightMeasure || null,
-        weight_unit:
+        pieceQty: baggage.pieceAllowance?.totalQty || null,
+        weightValue: baggage.weightAllowance?.[0]?.maximumWeightMeasure || null,
+        weightUnit:
           baggage.weightAllowance?.[0]?.weightUnitOfMeasurement || null,
         ref: baggagePath,
       };
@@ -318,9 +317,9 @@ function extractBaggageAllowance(
   }
 
   return {
-    piece_qty: null,
-    weight_value: null,
-    weight_unit: null,
+    pieceQty: null,
+    weightValue: null,
+    weightUnit: null,
     ref: errorRef(
       baggageListPath,
       `Baggage allowance not found for ref_ids: ${baggageRefIds.join(", ")}`
@@ -357,16 +356,16 @@ function extractSegmentInfo(
 
   if (!segmentRefId) {
     return {
-      segment_ref_id: null,
+      segmentRefId: null,
       origin: null,
       destination: null,
       rbd: null,
-      departure_datetime: null,
-      coupon_status: coupon.couponStatusCode || null,
-      fare_basis_code: coupon.fareBasisCode || null,
-      baggage_allowance: null,
-      coupon_number: coupon.couponNumber || null,
-      cabin_type_code: null,
+      departureDatetime: null,
+      couponStatus: coupon.couponStatusCode || null,
+      fareBasisCode: coupon.fareBasisCode || null,
+      baggageAllowance: null,
+      couponNumber: coupon.couponNumber || null,
+      cabinTypeCode: null,
       ref: errorRef(couponPath, "Segment reference not found"),
     };
   }
@@ -391,19 +390,19 @@ function extractSegmentInfo(
 
   if (!paxSegment || paxSegmentIndex < 0) {
     return {
-      segment_ref_id: segmentRefId,
+      segmentRefId: segmentRefId,
       origin: null,
       destination: null,
       rbd: paxSegment?.marketingCarrierRbdCode || null,
-      departure_datetime: null,
-      coupon_status: coupon.couponStatusCode || null,
-      fare_basis_code: coupon.fareBasisCode || null,
-      baggage_allowance: extractBaggageAllowance(
+      departureDatetime: null,
+      couponStatus: coupon.couponStatusCode || null,
+      fareBasisCode: coupon.fareBasisCode || null,
+      baggageAllowance: extractBaggageAllowance(
         data,
         coupon.baggageAllowanceRefId || []
       ),
-      coupon_number: coupon.couponNumber || null,
-      cabin_type_code: null,
+      couponNumber: coupon.couponNumber || null,
+      cabinTypeCode: null,
       ref: errorRef(
         paxSegmentListPath,
         `Segment not found for ref_id: ${segmentRefId}`
@@ -464,19 +463,19 @@ function extractSegmentInfo(
     marketingSegment?.dep?.aircraftScheduledDateTime || null;
 
   return {
-    segment_ref_id: segmentRefId,
+    segmentRefId: segmentRefId,
     origin,
     destination,
     rbd,
-    departure_datetime: departureDateTime,
-    coupon_status: coupon.couponStatusCode || null,
-    fare_basis_code: fareBasisCode,
-    baggage_allowance: extractBaggageAllowance(
+    departureDatetime: departureDateTime,
+    couponStatus: coupon.couponStatusCode || null,
+    fareBasisCode: fareBasisCode,
+    baggageAllowance: extractBaggageAllowance(
       data,
       coupon.baggageAllowanceRefId || []
     ),
-    coupon_number: coupon.couponNumber || null,
-    cabin_type_code: cabinTypeCode || null,
+    couponNumber: coupon.couponNumber || null,
+    cabinTypeCode: cabinTypeCode || null,
     ref: `${paxSegmentListPath}[${paxSegmentIndex}]`,
   };
 }
@@ -572,15 +571,15 @@ export function extractTickets(data: any): TicketInfo[] {
     }
 
     tickets.push({
-      ticket_number: ticketNumber,
-      issue_date: issueDate,
-      issue_time: issueTime,
+      ticketNumber: ticketNumber,
+      issueDate: issueDate,
+      issueTime: issueTime,
       passenger,
-      base_fare: baseFare,
-      total_tax: totalTax,
-      tax_breakdown: taxBreakdown,
-      total_amount: totalAmount,
-      ticket_type: ticketType,
+      baseFare: baseFare,
+      totalTax: totalTax,
+      taxBreakdown: taxBreakdown,
+      totalAmount: totalAmount,
+      ticketType: ticketType,
       segments,
       reportingTypeCode,
       ref: ticketDocPath,
@@ -598,7 +597,7 @@ export function extractOrderSummary(orderData: any): OrderSummary {
   const tickets = extractTickets(orderData);
 
   return {
-    order_details: orderDetails,
+    orderDetails: orderDetails,
     tickets,
   };
 }

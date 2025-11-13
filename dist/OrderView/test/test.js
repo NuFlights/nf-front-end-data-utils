@@ -66,18 +66,18 @@ try {
     // Order Details
     console.log("ORDER DETAILS");
     console.log("-".repeat(80));
-    console.log(`Booking Reference: ${summary.order_details.booking_reference}`);
-    console.log(`  ref: ${summary.order_details.ref}`);
+    console.log(`Booking Reference: ${summary.orderDetails.bookingReference}`);
+    console.log(`  ref: ${summary.orderDetails.ref}`);
     console.log();
     console.log("Issuing Office:");
-    console.log(`  Organization ID: ${summary.order_details.issuing_office.org_id}`);
-    console.log(`  Organization Name: ${summary.order_details.issuing_office.org_name}`);
-    console.log(`  Organization Role: ${summary.order_details.issuing_office.org_role}`);
-    console.log(`  Sales Agent ID: ${summary.order_details.issuing_office.sales_agent_id}`);
-    console.log(`  Sales Branch ID: ${summary.order_details.issuing_office.sales_branch_id}`);
-    console.log(`  ref: ${summary.order_details.issuing_office.ref}`);
+    console.log(`  Organization ID: ${summary.orderDetails.issuingOffice.orgId}`);
+    console.log(`  Organization Name: ${summary.orderDetails.issuingOffice.orgName}`);
+    console.log(`  Organization Role: ${summary.orderDetails.issuingOffice.orgRole}`);
+    console.log(`  Sales Agent ID: ${summary.orderDetails.issuingOffice.salesAgentId}`);
+    console.log(`  Sales Branch ID: ${summary.orderDetails.issuingOffice.salesBranchId}`);
+    console.log(`  ref: ${summary.orderDetails.issuingOffice.ref}`);
     console.log();
-    console.log(`PCC: ${summary.order_details.pcc}`);
+    console.log(`PCC: ${summary.orderDetails.pcc}`);
     console.log();
     // Tickets
     console.log("TICKETS");
@@ -87,23 +87,23 @@ try {
     summary.tickets.forEach((ticket, idx) => {
         console.log(`\nTicket #${idx + 1}`);
         console.log("  ".repeat(1) + "=".repeat(76));
-        console.log(`  Ticket Number: ${ticket.ticket_number}`);
-        console.log(`  Issue Date: ${ticket.issue_date}`);
-        console.log(`  Issue Time: ${ticket.issue_time}`);
-        console.log(`  Ticket Type: ${ticket.ticket_type}`);
+        console.log(`  Ticket Number: ${ticket.ticketNumber}`);
+        console.log(`  Issue Date: ${ticket.issueDate}`);
+        console.log(`  Issue Time: ${ticket.issueTime}`);
+        console.log(`  Ticket Type: ${ticket.ticketType}`);
         console.log(`  FOP Type: ${ticket.reportingTypeCode}`);
         console.log(`  ref: ${ticket.ref}`);
         console.log();
         // Passenger
         if (ticket.passenger) {
             console.log("  Passenger Information:");
-            console.log(`    Name: ${ticket.passenger.title} ${ticket.passenger.given_name} ${ticket.passenger.middle_name || ""} ${ticket.passenger.surname}`.replace(/\s+/g, " "));
+            console.log(`    Name: ${ticket.passenger.title} ${ticket.passenger.givenName} ${ticket.passenger.middleName || ""} ${ticket.passenger.surname}`.replace(/\s+/g, " "));
             console.log(`    Passenger Type: ${ticket.passenger.ptc}`);
             console.log(`    ref: ${ticket.passenger.ref}`);
-            if (ticket.passenger.loyalty_programs.length > 0) {
+            if (ticket.passenger.loyaltyPrograms.length > 0) {
                 console.log("    Loyalty Programs:");
-                ticket.passenger.loyalty_programs.forEach((lp, lpIdx) => {
-                    console.log(`      [${lpIdx + 1}] ${lp.program_code} - ${lp.account_number} (${lp.carrier})`);
+                ticket.passenger.loyaltyPrograms.forEach((lp, lpIdx) => {
+                    console.log(`      [${lpIdx + 1}] ${lp.programCode} - ${lp.accountNumber} (${lp.carrier})`);
                     console.log(`          ref: ${lp.ref}`);
                 });
             }
@@ -111,18 +111,18 @@ try {
         }
         // Fare Information
         console.log("  Fare Information:");
-        console.log(`    Base Fare: ${ticket.base_fare.amount} ${ticket.base_fare.currency}`);
-        console.log(`      ref: ${ticket.base_fare.ref}`);
-        console.log(`    Total Tax: ${ticket.total_tax.amount} ${ticket.total_tax.currency}`);
-        console.log(`      ref: ${ticket.total_tax.ref}`);
-        console.log(`    Total Amount: ${ticket.total_amount.amount} ${ticket.total_amount.currency}`);
-        console.log(`      ref: ${ticket.total_amount.ref}`);
+        console.log(`    Base Fare: ${ticket.baseFare.amount} ${ticket.baseFare.currency}`);
+        console.log(`      ref: ${ticket.baseFare.ref}`);
+        console.log(`    Total Tax: ${ticket.totalTax.amount} ${ticket.totalTax.currency}`);
+        console.log(`      ref: ${ticket.totalTax.ref}`);
+        console.log(`    Total Amount: ${ticket.totalAmount.amount} ${ticket.totalAmount.currency}`);
+        console.log(`      ref: ${ticket.totalAmount.ref}`);
         console.log();
         // Tax Breakdown
-        if (ticket.tax_breakdown.length > 0) {
+        if (ticket.taxBreakdown.length > 0) {
             console.log("    Tax Breakdown:");
-            ticket.tax_breakdown.forEach((tax, taxIdx) => {
-                console.log(`      [${taxIdx + 1}] ${tax.tax_code}: ${tax.amount} ${tax.currency} (${tax.tax_name || "N/A"})`);
+            ticket.taxBreakdown.forEach((tax, taxIdx) => {
+                console.log(`      [${taxIdx + 1}] ${tax.taxCode}: ${tax.amount} ${tax.currency} (${tax.taxName || "N/A"})`);
                 console.log(`          ref: ${tax.ref}`);
             });
             console.log();
@@ -131,15 +131,15 @@ try {
         console.log(`  Segments/Itinerary (${ticket.segments.length} segments):`);
         ticket.segments.forEach((segment, segIdx) => {
             console.log(`    [${segIdx + 1}] ${segment.origin || "N/A"} -> ${segment.destination || "N/A"}`);
-            console.log(`        Departure: ${segment.departure_datetime}`);
-            console.log(`        RBD: ${segment.rbd}, Fare Basis: ${segment.fare_basis_code}, Cabin Type Code: ${segment.cabin_type_code}`);
-            console.log(`        Status: ${segment.coupon_status}, Coupon #: ${segment.coupon_number}`);
-            if (segment.baggage_allowance) {
-                const bag = segment.baggage_allowance;
-                const baggageStr = bag.piece_qty
-                    ? `${bag.piece_qty} pieces`
-                    : bag.weight_value
-                        ? `${bag.weight_value} ${bag.weight_unit}`
+            console.log(`        Departure: ${segment.departureDatetime}`);
+            console.log(`        RBD: ${segment.rbd}, Fare Basis: ${segment.fareBasisCode}, Cabin Type Code: ${segment.cabinTypeCode}`);
+            console.log(`        Status: ${segment.couponStatus}, Coupon #: ${segment.couponNumber}`);
+            if (segment.baggageAllowance) {
+                const bag = segment.baggageAllowance;
+                const baggageStr = bag.pieceQty
+                    ? `${bag.pieceQty} pieces`
+                    : bag.weightValue
+                        ? `${bag.weightValue} ${bag.weightUnit}`
                         : "N/A";
                 console.log(`        Baggage: ${baggageStr}`);
                 console.log(`        Baggage ref: ${bag.ref}`);
