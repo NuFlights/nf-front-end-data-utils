@@ -9,7 +9,7 @@ export {
   extractOrderSummary,
   extractOrderDetails,
   extractTickets,
-} from "./../src/OrderView/extractors";
+} from "./extractors";
 
 export {
   OrderSummary,
