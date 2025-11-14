@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "testOrderView": "node dist/test.js",
+    "testViewOrder": "node dist/test.js",
     "dev": "tsc --watch"
   },
   "keywords": [
