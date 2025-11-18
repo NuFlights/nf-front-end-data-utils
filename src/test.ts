@@ -37,7 +37,7 @@ try {
   console.log("=".repeat(80));
   console.log("FULL EXTRACTED JSON");
   console.log("=".repeat(80));
-  // console.log(JSON.stringify(summary, null, 2));
+  console.log(JSON.stringify(summary, null, 2));
   console.log();
   console.log("=".repeat(80));
   console.log();

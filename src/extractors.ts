@@ -572,8 +572,6 @@ export function extractTickets(data: any): TicketInfo[] {
     });
   }
 
-  console.log("seatDetailsssssssssssssssssssssssssssssssss", seatDetails);
-
   if (!Array.isArray(ticketDocInfoList)) {
     return tickets;
   } else {
@@ -622,7 +620,6 @@ export function extractTickets(data: any): TicketInfo[] {
 
     // Extract passenger info
     const paxRefId = ticketDocInfo.paxRefId;
-    console.log("paxRefIddddddddddddddddddddddddddddddddddd", paxRefId);
     const passenger = paxRefId ? extractPassengerInfo(data, paxRefId) : null;
 
     // Extract fare information
