@@ -47,7 +47,7 @@ const extractors_1 = require("./extractors");
 //   "test",
 //   "order_view_rs_example.json"
 // );
-const exampleFilePath = path.join(__dirname, '..', 'order_view_rs_example.json');
+const exampleFilePath = path.join(__dirname, "..", "order_view_rs_example.json");
 console.log("exampleFilePath", exampleFilePath);
 console.log("Loading order view example JSON...");
 console.log(`File path: ${exampleFilePath}`);
@@ -61,7 +61,7 @@ try {
     console.log("=".repeat(80));
     console.log("FULL EXTRACTED JSON");
     console.log("=".repeat(80));
-    console.log(JSON.stringify(summary, null, 2));
+    // console.log(JSON.stringify(summary, null, 2));
     console.log();
     console.log("=".repeat(80));
     console.log();
@@ -134,12 +134,14 @@ try {
             });
             console.log();
         }
+        console.log(`  Seat Amount: ${ticket.seatAmount}`);
         // Segments
         console.log(`  Segments/Itinerary (${ticket.segments.length} segments):`);
         ticket.segments.forEach((segment, segIdx) => {
             console.log(`    [${segIdx + 1}] ${segment.origin || "N/A"} -> ${segment.destination || "N/A"}`);
             console.log(`        Departure: ${segment.departureDatetime}`);
             console.log(`        RBD: ${segment.rbd}, Fare Basis: ${segment.fareBasisCode}, Cabin Type Code: ${segment.cabinTypeCode}`);
+            console.log(`        seat: ${segment?.seatOnLeg?.rowNumber}${segment?.seatOnLeg?.columnId}`);
             console.log(`        Status: ${segment.couponStatus}, Coupon #: ${segment.couponNumber}`);
             if (segment.baggageAllowance) {
                 const bag = segment.baggageAllowance;

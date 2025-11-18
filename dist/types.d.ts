@@ -43,6 +43,7 @@ export interface SegmentInfo {
     couponNumber: string | null;
     cabinTypeCode?: string | null;
     ref: string;
+    seatOnLeg?: any;
 }
 export interface PassengerInfo {
     paxRefId: string | null;
@@ -65,6 +66,7 @@ export interface TicketInfo {
     totalAmount: MonetaryAmount;
     ticketType: string | null;
     segments: SegmentInfo[];
+    seatAmount: any;
     reportingTypeCode: string | null;
     ref: string;
 }
@@ -74,6 +76,12 @@ export interface IssuingOffice {
     orgRole: string | null;
     salesAgentId: string | null;
     salesBranchId: string | null;
+    ref: string;
+}
+export interface seatDetails {
+    orderServiceAssociation: any;
+    paxRefId: string | null;
+    price: any;
     ref: string;
 }
 export interface OrderDetails {

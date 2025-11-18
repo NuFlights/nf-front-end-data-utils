@@ -140,8 +140,9 @@ function extractPassengerInfo(data, paxRefId) {
     let passenger = null;
     for (let i = 0; i < paxList.length; i++) {
         // Check both paxRefId and paxId
-        if (refIds.includes(paxList[i].paxRefId) ||
-            refIds.includes(paxList[i].paxId)) {
+        if (
+        // refIds.includes(paxList[i].paxRefId) ||
+        refIds.includes(paxList[i].paxId)) {
             passenger = paxList[i];
             paxIndex = i;
             break;
@@ -288,7 +289,7 @@ function extractBaggageAllowance(data, baggageRefIds) {
 /**
  * Extract segment information from coupon
  */
-function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx) {
+function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx, ticketDocInfo) {
     const couponPath = `ticketDocInfo[${ticketIndex}].ticket[${ticketIdx}].coupon[${couponIdx}]`;
     // Get segment reference ID
     const segmentRefIds = coupon.currentCouponFlightInfoRef?.currentAirlinePaxSegmentRef
@@ -302,6 +303,9 @@ function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx) {
         ? segmentRefIds
         : [segmentRefIds];
     const segmentRefId = refIdArray[0] || null;
+    const paxRefIds = ticketDocInfo?.paxRefId && Array.isArray(ticketDocInfo?.paxRefId)
+        ? ticketDocInfo?.paxRefId
+        : [ticketDocInfo?.paxRefId];
     if (!segmentRefId) {
         return {
             segmentRefId: null,
@@ -314,6 +318,7 @@ function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx) {
             baggageAllowance: null,
             couponNumber: coupon.couponNumber || null,
             cabinTypeCode: null,
+            seatOnLeg: null,
             ref: errorRef(couponPath, "Segment reference not found"),
         };
     }
@@ -343,6 +348,7 @@ function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx) {
             baggageAllowance: extractBaggageAllowance(data, coupon.baggageAllowanceRefId || []),
             couponNumber: coupon.couponNumber || null,
             cabinTypeCode: null,
+            seatOnLeg: null,
             ref: errorRef(paxSegmentListPath, `Segment not found for ref_id: ${segmentRefId}`),
         };
     }
@@ -351,16 +357,21 @@ function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx) {
     let rbd = paxSegment.marketingCarrierRbdCode || null;
     let fareBasisCode = coupon.fareBasisCode || null;
     let cabinTypeCode = null;
+    let seatOnLeg = null;
     const orderItemPath = "iataOrderRetrieve.response.order[0].orderItem";
     const orderItems = safeExtract(data, orderItemPath, []);
     if (rbd === null || fareBasisCode === null) {
         if (Array.isArray(orderItems)) {
             for (const orderItem of orderItems) {
                 const orderItemFareDetailPath = orderItem.fareDetail;
+                const orderItemServicePath = orderItem.service;
                 for (const fareDetail of orderItemFareDetailPath) {
                     const orderItemFareDetailFareComponentPath = fareDetail.fareComponent;
                     for (const fareComponent of orderItemFareDetailFareComponentPath) {
-                        if (fareComponent.paxSegmentRefId.includes(segmentRefId)) {
+                        const paxSegmentRefId = Array.isArray(fareComponent?.paxSegmentRefId)
+                            ? fareComponent?.paxSegmentRefId
+                            : [fareComponent?.paxSegmentRefId];
+                        if (paxSegmentRefId.includes(segmentRefId)) {
                             if (rbd === null) {
                                 rbd = fareComponent.rbd.rbdCode;
                             }
@@ -370,6 +381,31 @@ function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx) {
                             cabinTypeCode = fareComponent.cabinType.cabinTypeCode;
                             break;
                         }
+                    }
+                }
+            }
+        }
+    }
+    if (seatOnLeg === null) {
+        if (Array.isArray(orderItems)) {
+            for (const orderItem of orderItems) {
+                const orderItemServicePath = orderItem.service;
+                for (const service of orderItemServicePath) {
+                    let paxSegmentRefId = service?.orderServiceAssociation?.paxSegmentRef?.paxSegmentRefId;
+                    paxSegmentRefId = Array.isArray(paxSegmentRefId)
+                        ? paxSegmentRefId
+                        : [paxSegmentRefId];
+                    if (paxSegmentRefId.includes(segmentRefId) &&
+                        paxRefIds.includes(service?.paxRefId) &&
+                        service.orderServiceAssociation &&
+                        service.orderServiceAssociation.seatOnLeg &&
+                        service.orderServiceAssociation.seatOnLeg.seat &&
+                        service.orderServiceAssociation.seatOnLeg.seat.columnId) {
+                        if (seatOnLeg === null) {
+                            seatOnLeg = service.orderServiceAssociation.seatOnLeg.seat;
+                            console.log("seatOnLeg", seatOnLeg);
+                        }
+                        break;
                     }
                 }
             }
@@ -402,6 +438,7 @@ function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx) {
         couponNumber: coupon.couponNumber || null,
         cabinTypeCode: cabinTypeCode || null,
         ref: `${paxSegmentListPath}[${paxSegmentIndex}]`,
+        seatOnLeg,
     };
 }
 /**
@@ -409,10 +446,42 @@ function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx) {
  */
 function extractTickets(data) {
     const tickets = [];
+    const seatDetails = [];
     const ticketDocInfoPath = "iataOrderRetrieve.response.ticketDocInfo";
-    const ticketDocInfoList = safeExtract(data, ticketDocInfoPath, []);
+    let ticketDocInfoList = safeExtract(data, ticketDocInfoPath, []);
+    const orderPath = "iataOrderRetrieve.response.order";
+    let orderList = safeExtract(data, orderPath, []);
+    if (Array.isArray(orderList)) {
+        orderList.forEach((order, orderIndex) => {
+            order?.orderItem?.forEach((orderItemRecord, orderItemRecordIndex) => {
+                if (orderItemRecord?.fareDetail &&
+                    orderItemRecord?.fareDetail?.length === 0 &&
+                    orderItemRecord?.service &&
+                    orderItemRecord?.service?.length > 0) {
+                    orderItemRecord?.service?.forEach((orderService, orderServiceIndex) => {
+                        if (orderService?.orderServiceAssociation?.seatOnLeg?.seat
+                            ?.columnId) {
+                            const obj = {
+                                orderServiceAssociation: orderService?.orderServiceAssociation,
+                                paxRefId: orderService?.paxRefId,
+                                price: orderItemRecord?.price,
+                                ref: `${orderPath}[${orderIndex}].orderItem[${orderItemRecordIndex}].service[${orderServiceIndex}]`,
+                            };
+                            seatDetails.push(obj);
+                        }
+                    });
+                }
+            });
+        });
+    }
+    console.log("seatDetailsssssssssssssssssssssssssssssssss", seatDetails);
     if (!Array.isArray(ticketDocInfoList)) {
         return tickets;
+    }
+    else {
+        ticketDocInfoList = ticketDocInfoList.filter((list) => list?.ticket?.[0]?.ticketDocTypeCode === "702" ||
+            list?.ticket?.[0]?.ticketDocTypeCode === "INF" ||
+            list?.ticket?.[0]?.ticketDocTypeCode === "T");
     }
     ticketDocInfoList.forEach((ticketDocInfo, ticketIndex) => {
         const ticketDocPath = `${ticketDocInfoPath}[${ticketIndex}]`;
@@ -421,7 +490,7 @@ function extractTickets(data) {
         let validTicket = null;
         let validTicketIndex = -1;
         for (let i = 0; i < ticketList.length; i++) {
-            if (ticketList[i].ticketStatusCode === "T") {
+            if (ticketList[i].coupon[0].couponStatusCode === "T") {
                 validTicket = ticketList[i];
                 validTicketIndex = i;
                 break;
@@ -444,6 +513,7 @@ function extractTickets(data) {
         const issueTime = ticketDocInfo.originalIssueInfo?.issueTime || null;
         // Extract passenger info
         const paxRefId = ticketDocInfo.paxRefId;
+        console.log("paxRefIddddddddddddddddddddddddddddddddddd", paxRefId);
         const passenger = paxRefId ? extractPassengerInfo(data, paxRefId) : null;
         // Extract fare information
         const baseFare = extractMonetaryAmount(ticketDocInfo, "fareDetail.farePriceType[0].price.baseAmount");
@@ -452,16 +522,19 @@ function extractTickets(data) {
         // Extract tax breakdown
         const taxBreakdown = extractTaxBreakdown(ticketDocInfo, ticketIndex);
         // Extract ticket type
-        const ticketType = validTicket?.ticketDocTypeCode || null;
+        const ticketType = validTicket?.coupon?.[0]?.couponStatusCode || null;
         // Extract segments (coupons)
         const segments = [];
         if (validTicket && validTicketIndex >= 0) {
             const coupons = validTicket.coupon || [];
             coupons.forEach((coupon, couponIdx) => {
-                const segmentInfo = extractSegmentInfo(data, coupon, ticketIndex, validTicketIndex, couponIdx);
+                const segmentInfo = extractSegmentInfo(data, coupon, ticketIndex, validTicketIndex, couponIdx, ticketDocInfo);
                 segments.push(segmentInfo);
             });
         }
+        const seatAmount = seatDetails
+            ?.filter((record) => record?.paxRefId === ticketDocInfo?.paxRefId)
+            ?.reduce((sum, item) => sum + Number(item.price.totalAmount.cdata), 0);
         tickets.push({
             ticketNumber: ticketNumber,
             issueDate: issueDate,
@@ -473,12 +546,42 @@ function extractTickets(data) {
             totalAmount: totalAmount,
             ticketType: ticketType,
             segments,
+            seatAmount,
             reportingTypeCode,
             ref: ticketDocPath,
         });
     });
     return tickets;
 }
+// /**
+//  * Extract Final tickets
+//  */
+// export function extractFinalTickets(data: any): TicketInfo[] {
+//   const collectPaxRefIds: string[] = [];
+//   for (const item of data) {
+//     const itemPaxRefId = item?.passenger.paxRefId;
+//     if (!collectPaxRefIds.includes(itemPaxRefId)) {
+//       collectPaxRefIds.push(itemPaxRefId);
+//     }
+//   }
+//   console.log("collectPaxRefIdsssssssssssssssssssssssssssss", collectPaxRefIds);
+//   if (collectPaxRefIds && collectPaxRefIds.length > 0) {
+//     let finalTickets: TicketInfo[] = [];
+//     for (const paxRefId of collectPaxRefIds) {
+//       const filterByPaxRefId = data?.filter(
+//         (item: TicketInfo) => item?.passenger?.paxRefId === paxRefId
+//       );
+//       if (filterByPaxRefId && filterByPaxRefId.length > 0) {
+//         if (filterByPaxRefId.length > 1) {
+//            console.log("filterByPaxRefIdddddddddddddd", filterByPaxRefId);
+//         } else {
+//           finalTickets = [finalTickets, ...filterByPaxRefId];
+//         }
+//       }
+//     }
+//   }
+//   return data;
+// }
 /**
  * Main function to extract complete order summary
  */

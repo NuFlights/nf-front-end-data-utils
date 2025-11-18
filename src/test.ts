@@ -14,7 +14,11 @@ import { extractOrderSummary } from "./extractors";
 //   "test",
 //   "order_view_rs_example.json"
 // );
-const exampleFilePath = path.join(__dirname, '..', 'order_view_rs_example.json');
+const exampleFilePath = path.join(
+  __dirname,
+  "..",
+  "order_view_rs_example.json"
+);
 console.log("exampleFilePath", exampleFilePath);
 
 console.log("Loading order view example JSON...");
@@ -33,7 +37,7 @@ try {
   console.log("=".repeat(80));
   console.log("FULL EXTRACTED JSON");
   console.log("=".repeat(80));
-  console.log(JSON.stringify(summary, null, 2));
+  // console.log(JSON.stringify(summary, null, 2));
   console.log();
   console.log("=".repeat(80));
   console.log();
@@ -140,6 +144,7 @@ try {
       });
       console.log();
     }
+    console.log(`  Seat Amount: ${ticket.seatAmount}`);
 
     // Segments
     console.log(`  Segments/Itinerary (${ticket.segments.length} segments):`);
@@ -152,6 +157,9 @@ try {
       console.log(`        Departure: ${segment.departureDatetime}`);
       console.log(
         `        RBD: ${segment.rbd}, Fare Basis: ${segment.fareBasisCode}, Cabin Type Code: ${segment.cabinTypeCode}`
+      );
+      console.log(
+        `        seat: ${segment?.seatOnLeg?.rowNumber}${segment?.seatOnLeg?.columnId}`
       );
       console.log(
         `        Status: ${segment.couponStatus}, Coupon #: ${segment.couponNumber}`
