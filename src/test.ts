@@ -105,9 +105,7 @@ try {
         console.log("    Loyalty Programs:");
         ticket.passenger.loyaltyPrograms.forEach((lp, lpIdx) => {
           console.log(
-            `      [${lpIdx + 1}] ${lp.programCode} - ${lp.accountNumber} (${
-              lp.carrier
-            })`
+            `      [${lpIdx + 1}] ${lp.carrier} - ${lp.accountNumber}`
           );
           console.log(`          ref: ${lp.ref}`);
         });

@@ -2,7 +2,7 @@
   "iataOrderRetrieve": {
     "error": [],
     "payloadAttributes": {
-      "trxId": "7c15ed99-1020-4673-8389-c9c05b8c169a"
+      "trxId": "70032fcd-363b-4d50-a30e-e139740d08ad"
     },
     "augmentationPoint": {
       "agency": {
@@ -12,38 +12,38 @@
     "response": {
       "order": [
         {
-          "orderId": "SQ618EH4P8Q00",
-          "ownerCode": "SQ",
+          "orderId": "EY6077UTFE600",
+          "ownerCode": "EY",
           "totalPrice": {
             "baseAmount": {
-              "cdata": "2760.0",
+              "cdata": "1820.0",
               "curCode": null
             },
             "totalAmount": {
-              "cdata": "3200.0",
+              "cdata": "2780.0",
               "curCode": "QAR"
             }
           },
           "orderItem": [
             {
-              "orderItemId": "SQ618EH4P8Q00_AIR-2",
+              "orderItemId": "EY6077UTFE600_AIR-1",
               "creationDateTime": null,
               "paymentTimeLimitDateTime": null,
               "bilateralTimeLimit": [],
               "price": {
                 "baseAmount": {
-                  "cdata": "2760.0",
+                  "cdata": "1820.0",
                   "curCode": "QAR"
                 },
                 "totalAmount": {
-                  "cdata": "3200.0",
+                  "cdata": "2780.0",
                   "curCode": "QAR"
                 },
                 "surcharge": [],
                 "taxSummary": [
                   {
                     "totalTaxAmount": {
-                      "cdata": "440.0",
+                      "cdata": "960.0",
                       "curCode": "QAR"
                     },
                     "approximateInd": null,
@@ -52,10 +52,10 @@
                     "tax": [
                       {
                         "amount": {
-                          "cdata": "60.00",
+                          "cdata": "100.00",
                           "curCode": "QAR"
                         },
-                        "taxCode": "OP",
+                        "taxCode": "F6",
                         "taxName": null,
                         "approximateInd": null,
                         "refundInd": null,
@@ -63,10 +63,10 @@
                       },
                       {
                         "amount": {
-                          "cdata": "280.00",
+                          "cdata": "160.00",
                           "curCode": "QAR"
                         },
-                        "taxCode": "SG",
+                        "taxCode": "AE",
                         "taxName": null,
                         "approximateInd": null,
                         "refundInd": null,
@@ -85,10 +85,21 @@
                       },
                       {
                         "amount": {
-                          "cdata": "80.00",
+                          "cdata": "660.00",
                           "curCode": "QAR"
                         },
-                        "taxCode": "L7",
+                        "taxCode": "YQ",
+                        "taxName": null,
+                        "approximateInd": null,
+                        "refundInd": null,
+                        "collectionInd": null
+                      },
+                      {
+                        "amount": {
+                          "cdata": "20.00",
+                          "curCode": "QAR"
+                        },
+                        "taxCode": "TP",
                         "taxName": null,
                         "approximateInd": null,
                         "refundInd": null,
@@ -104,11 +115,11 @@
                     {
                       "price": {
                         "totalAmount": {
-                          "cdata": "1340.0",
+                          "cdata": "1390.0",
                           "curCode": "QAR"
                         },
                         "baseAmount": {
-                          "cdata": "1120.0",
+                          "cdata": "910.0",
                           "curCode": "QAR"
                         },
                         "curConversion": []
@@ -123,163 +134,11 @@
                         "cabinTypeName": "ECO"
                       },
                       "fareBasisCityPairText": null,
-                      "fareBasisCode": "N16SGOPO/CH25",
+                      "fareBasisCode": "TNN10H8FC",
                       "rbd": {
-                        "rbdCode": "N"
+                        "rbdCode": "T"
                       },
-                      "paxSegmentRefId": ["SEG2"],
-                      "priceClassRefId": null,
-                      "fareRule": [],
-                      "price": null
-                    }
-                  ],
-                  "paxRefId": ["PAX4"],
-                  "fareIndCode": null,
-                  "filedFareInd": null
-                },
-                {
-                  "farePriceType": [
-                    {
-                      "price": {
-                        "totalAmount": {
-                          "cdata": "1340.0",
-                          "curCode": "QAR"
-                        },
-                        "baseAmount": {
-                          "cdata": "1120.0",
-                          "curCode": "QAR"
-                        },
-                        "curConversion": []
-                      },
-                      "farePriceTypeCode": "FILED"
-                    }
-                  ],
-                  "fareComponent": [
-                    {
-                      "cabinType": {
-                        "cabinTypeCode": "5",
-                        "cabinTypeName": "ECO"
-                      },
-                      "fareBasisCityPairText": null,
-                      "fareBasisCode": "N16SGOPO/CH25",
-                      "rbd": {
-                        "rbdCode": "N"
-                      },
-                      "paxSegmentRefId": ["SEG2"],
-                      "priceClassRefId": null,
-                      "fareRule": [],
-                      "price": null
-                    }
-                  ],
-                  "paxRefId": ["PAX4"],
-                  "fareIndCode": null,
-                  "filedFareInd": null
-                },
-                {
-                  "farePriceType": [
-                    {
-                      "price": {
-                        "totalAmount": {
-                          "cdata": "1710.0",
-                          "curCode": "QAR"
-                        },
-                        "baseAmount": {
-                          "cdata": "1490.0",
-                          "curCode": "QAR"
-                        },
-                        "curConversion": []
-                      },
-                      "farePriceTypeCode": "NET"
-                    }
-                  ],
-                  "fareComponent": [
-                    {
-                      "cabinType": {
-                        "cabinTypeCode": "5",
-                        "cabinTypeName": "ECO"
-                      },
-                      "fareBasisCityPairText": null,
-                      "fareBasisCode": "N16SGOPO",
-                      "rbd": {
-                        "rbdCode": "N"
-                      },
-                      "paxSegmentRefId": ["SEG2"],
-                      "priceClassRefId": null,
-                      "fareRule": [],
-                      "price": null
-                    }
-                  ],
-                  "paxRefId": ["PAX2"],
-                  "fareIndCode": null,
-                  "filedFareInd": null
-                },
-                {
-                  "farePriceType": [
-                    {
-                      "price": {
-                        "totalAmount": {
-                          "cdata": "1710.0",
-                          "curCode": "QAR"
-                        },
-                        "baseAmount": {
-                          "cdata": "1490.0",
-                          "curCode": "QAR"
-                        },
-                        "curConversion": []
-                      },
-                      "farePriceTypeCode": "FILED"
-                    }
-                  ],
-                  "fareComponent": [
-                    {
-                      "cabinType": {
-                        "cabinTypeCode": "5",
-                        "cabinTypeName": "ECO"
-                      },
-                      "fareBasisCityPairText": null,
-                      "fareBasisCode": "N16SGOPO",
-                      "rbd": {
-                        "rbdCode": "N"
-                      },
-                      "paxSegmentRefId": ["SEG2"],
-                      "priceClassRefId": null,
-                      "fareRule": [],
-                      "price": null
-                    }
-                  ],
-                  "paxRefId": ["PAX2"],
-                  "fareIndCode": null,
-                  "filedFareInd": null
-                },
-                {
-                  "farePriceType": [
-                    {
-                      "price": {
-                        "totalAmount": {
-                          "cdata": "150.0",
-                          "curCode": "QAR"
-                        },
-                        "baseAmount": {
-                          "cdata": "150.0",
-                          "curCode": "QAR"
-                        },
-                        "curConversion": []
-                      },
-                      "farePriceTypeCode": "NET"
-                    }
-                  ],
-                  "fareComponent": [
-                    {
-                      "cabinType": {
-                        "cabinTypeCode": "5",
-                        "cabinTypeName": "ECO"
-                      },
-                      "fareBasisCityPairText": null,
-                      "fareBasisCode": "N16SGOPO/IN90",
-                      "rbd": {
-                        "rbdCode": "N"
-                      },
-                      "paxSegmentRefId": ["SEG2"],
+                      "paxSegmentRefId": ["SEG1"],
                       "priceClassRefId": null,
                       "fareRule": [],
                       "price": null
@@ -294,11 +153,11 @@
                     {
                       "price": {
                         "totalAmount": {
-                          "cdata": "150.0",
+                          "cdata": "1390.0",
                           "curCode": "QAR"
                         },
                         "baseAmount": {
-                          "cdata": "150.0",
+                          "cdata": "910.0",
                           "curCode": "QAR"
                         },
                         "curConversion": []
@@ -313,17 +172,93 @@
                         "cabinTypeName": "ECO"
                       },
                       "fareBasisCityPairText": null,
-                      "fareBasisCode": "N16SGOPO/IN90",
+                      "fareBasisCode": "TNN10H8FC",
                       "rbd": {
-                        "rbdCode": "N"
+                        "rbdCode": "T"
                       },
-                      "paxSegmentRefId": ["SEG2"],
+                      "paxSegmentRefId": ["SEG1"],
                       "priceClassRefId": null,
                       "fareRule": [],
                       "price": null
                     }
                   ],
                   "paxRefId": ["PAX3"],
+                  "fareIndCode": null,
+                  "filedFareInd": null
+                },
+                {
+                  "farePriceType": [
+                    {
+                      "price": {
+                        "totalAmount": {
+                          "cdata": "1390.0",
+                          "curCode": "QAR"
+                        },
+                        "baseAmount": {
+                          "cdata": "910.0",
+                          "curCode": "QAR"
+                        },
+                        "curConversion": []
+                      },
+                      "farePriceTypeCode": "NET"
+                    }
+                  ],
+                  "fareComponent": [
+                    {
+                      "cabinType": {
+                        "cabinTypeCode": "5",
+                        "cabinTypeName": "ECO"
+                      },
+                      "fareBasisCityPairText": null,
+                      "fareBasisCode": "TNN10H8F",
+                      "rbd": {
+                        "rbdCode": "T"
+                      },
+                      "paxSegmentRefId": ["SEG1"],
+                      "priceClassRefId": "YBASIC",
+                      "fareRule": [],
+                      "price": null
+                    }
+                  ],
+                  "paxRefId": ["PAX2"],
+                  "fareIndCode": null,
+                  "filedFareInd": null
+                },
+                {
+                  "farePriceType": [
+                    {
+                      "price": {
+                        "totalAmount": {
+                          "cdata": "1390.0",
+                          "curCode": "QAR"
+                        },
+                        "baseAmount": {
+                          "cdata": "910.0",
+                          "curCode": "QAR"
+                        },
+                        "curConversion": []
+                      },
+                      "farePriceTypeCode": "FILED"
+                    }
+                  ],
+                  "fareComponent": [
+                    {
+                      "cabinType": {
+                        "cabinTypeCode": "5",
+                        "cabinTypeName": "ECO"
+                      },
+                      "fareBasisCityPairText": null,
+                      "fareBasisCode": "TNN10H8F",
+                      "rbd": {
+                        "rbdCode": "T"
+                      },
+                      "paxSegmentRefId": ["SEG1"],
+                      "priceClassRefId": "YBASIC",
+                      "fareRule": [],
+                      "price": null
+                    }
+                  ],
+                  "paxRefId": ["PAX2"],
                   "fareIndCode": null,
                   "filedFareInd": null
                 }
@@ -332,34 +267,15 @@
                 {
                   "bookingRef": [
                     {
-                      "bookingId": "EH4P8Q"
+                      "bookingId": "7UTFE6"
                     }
                   ],
-                  "serviceId": "SEG2_PAX3",
-                  "paxRefId": "PAX3",
-                  "statusCode": "CONFIRMED",
-                  "orderServiceAssociation": {
-                    "paxSegmentRef": {
-                      "paxSegmentRefId": "SEG2"
-                    },
-                    "serviceDefinitionRef": {
-                      "serviceDefinitionRefId": null
-                    },
-                    "seatOnLeg": null
-                  }
-                },
-                {
-                  "bookingRef": [
-                    {
-                      "bookingId": "EH4P8Q"
-                    }
-                  ],
-                  "serviceId": "SEG2_PAX2",
+                  "serviceId": "SEG1_PAX2",
                   "paxRefId": "PAX2",
                   "statusCode": "CONFIRMED",
                   "orderServiceAssociation": {
                     "paxSegmentRef": {
-                      "paxSegmentRefId": "SEG2"
+                      "paxSegmentRefId": "SEG1"
                     },
                     "serviceDefinitionRef": {
                       "serviceDefinitionRefId": null
@@ -370,15 +286,15 @@
                 {
                   "bookingRef": [
                     {
-                      "bookingId": "EH4P8Q"
+                      "bookingId": "7UTFE6"
                     }
                   ],
-                  "serviceId": "SEG2_PAX4",
-                  "paxRefId": "PAX4",
+                  "serviceId": "SEG1_PAX3",
+                  "paxRefId": "PAX3",
                   "statusCode": "CONFIRMED",
                   "orderServiceAssociation": {
                     "paxSegmentRef": {
-                      "paxSegmentRefId": "SEG2"
+                      "paxSegmentRefId": "SEG1"
                     },
                     "serviceDefinitionRef": {
                       "serviceDefinitionRefId": null
@@ -389,15 +305,15 @@
                 {
                   "bookingRef": [
                     {
-                      "bookingId": "EH4P8Q"
+                      "bookingId": "7UTFE6"
                     }
                   ],
-                  "serviceId": "SEG2_PAX4_BAG1",
-                  "paxRefId": "PAX4",
+                  "serviceId": "SEG1_PAX3_BAG1",
+                  "paxRefId": "PAX3",
                   "statusCode": "CONFIRMED",
                   "orderServiceAssociation": {
                     "paxSegmentRef": {
-                      "paxSegmentRefId": "SEG2"
+                      "paxSegmentRefId": "SEG1"
                     },
                     "serviceDefinitionRef": {
                       "serviceDefinitionRefId": "BAGALLOW_1"
@@ -408,55 +324,36 @@
                 {
                   "bookingRef": [
                     {
-                      "bookingId": "EH4P8Q"
+                      "bookingId": "7UTFE6"
                     }
                   ],
-                  "serviceId": "SEG2_PAX2_BAG1",
+                  "serviceId": "SEG1_PAX2_BAG1",
                   "paxRefId": "PAX2",
                   "statusCode": "CONFIRMED",
                   "orderServiceAssociation": {
                     "paxSegmentRef": {
-                      "paxSegmentRefId": "SEG2"
+                      "paxSegmentRefId": "SEG1"
                     },
                     "serviceDefinitionRef": {
                       "serviceDefinitionRefId": "BAGALLOW_1"
                     },
                     "seatOnLeg": null
                   }
-                },
-                {
-                  "bookingRef": [
-                    {
-                      "bookingId": "EH4P8Q"
-                    }
-                  ],
-                  "serviceId": "SEG2_PAX3_BAG1",
-                  "paxRefId": "PAX3",
-                  "statusCode": "CONFIRMED",
-                  "orderServiceAssociation": {
-                    "paxSegmentRef": {
-                      "paxSegmentRefId": "SEG2"
-                    },
-                    "serviceDefinitionRef": {
-                      "serviceDefinitionRefId": "BAGALLOW_2"
-                    },
-                    "seatOnLeg": null
-                  }
                 }
               ]
             },
             {
-              "orderItemId": "SQ618EH4P8Q00_SRV108",
+              "orderItemId": "EY6077UTFE600_FSSR20",
               "creationDateTime": null,
               "paymentTimeLimitDateTime": null,
               "bilateralTimeLimit": [],
               "price": {
                 "baseAmount": {
-                  "cdata": "200.00",
+                  "cdata": "0.00",
                   "curCode": "QAR"
                 },
                 "totalAmount": {
-                  "cdata": "200.00",
+                  "cdata": "0.00",
                   "curCode": "QAR"
                 },
                 "surcharge": [],
@@ -467,146 +364,20 @@
                 {
                   "bookingRef": [
                     {
-                      "bookingId": "EH4P8Q"
+                      "bookingId": "7UTFE6"
                     }
                   ],
-                  "serviceId": "SVC3",
-                  "paxRefId": "PAX2",
-                  "statusCode": "CONFIRMED",
-                  "orderServiceAssociation": {
-                    "paxSegmentRef": null,
-                    "serviceDefinitionRef": {
-                      "serviceDefinitionRefId": "PENF_1"
-                    },
-                    "seatOnLeg": null
-                  }
-                }
-              ]
-            },
-            {
-              "orderItemId": "SQ618EH4P8Q00_SRV111",
-              "creationDateTime": null,
-              "paymentTimeLimitDateTime": null,
-              "bilateralTimeLimit": [],
-              "price": {
-                "baseAmount": {
-                  "cdata": "200.00",
-                  "curCode": "QAR"
-                },
-                "totalAmount": {
-                  "cdata": "200.00",
-                  "curCode": "QAR"
-                },
-                "surcharge": [],
-                "taxSummary": []
-              },
-              "fareDetail": [],
-              "service": [
-                {
-                  "bookingRef": [
-                    {
-                      "bookingId": "EH4P8Q"
-                    }
-                  ],
-                  "serviceId": "SVC4",
-                  "paxRefId": "PAX4",
-                  "statusCode": "CONFIRMED",
-                  "orderServiceAssociation": {
-                    "paxSegmentRef": null,
-                    "serviceDefinitionRef": {
-                      "serviceDefinitionRefId": "PENF_1"
-                    },
-                    "seatOnLeg": null
-                  }
-                }
-              ]
-            },
-            {
-              "orderItemId": "SQ618EH4P8Q00_FSSR90_PAX2",
-              "creationDateTime": null,
-              "paymentTimeLimitDateTime": null,
-              "bilateralTimeLimit": [],
-              "price": {
-                "baseAmount": {
-                  "cdata": "100.00",
-                  "curCode": "QAR"
-                },
-                "totalAmount": {
-                  "cdata": "100.00",
-                  "curCode": "QAR"
-                },
-                "surcharge": [],
-                "taxSummary": []
-              },
-              "fareDetail": [],
-              "service": [
-                {
-                  "bookingRef": [
-                    {
-                      "bookingId": "EH4P8Q"
-                    }
-                  ],
-                  "serviceId": "SEAT902",
+                  "serviceId": "SSR20",
                   "paxRefId": "PAX2",
                   "statusCode": "CONFIRMED",
                   "orderServiceAssociation": {
                     "paxSegmentRef": {
-                      "paxSegmentRefId": "SEG2"
+                      "paxSegmentRefId": "SEG1"
                     },
                     "serviceDefinitionRef": {
-                      "serviceDefinitionRefId": null
+                      "serviceDefinitionRefId": "DBML_1"
                     },
-                    "seatOnLeg": {
-                      "seat": {
-                        "columnId": "A",
-                        "rowNumber": 43
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "orderItemId": "SQ618EH4P8Q00_FSSR90_PAX4",
-              "creationDateTime": null,
-              "paymentTimeLimitDateTime": null,
-              "bilateralTimeLimit": [],
-              "price": {
-                "baseAmount": {
-                  "cdata": "100.00",
-                  "curCode": "QAR"
-                },
-                "totalAmount": {
-                  "cdata": "100.00",
-                  "curCode": "QAR"
-                },
-                "surcharge": [],
-                "taxSummary": []
-              },
-              "fareDetail": [],
-              "service": [
-                {
-                  "bookingRef": [
-                    {
-                      "bookingId": "EH4P8Q"
-                    }
-                  ],
-                  "serviceId": "SEAT904",
-                  "paxRefId": "PAX4",
-                  "statusCode": "CONFIRMED",
-                  "orderServiceAssociation": {
-                    "paxSegmentRef": {
-                      "paxSegmentRefId": "SEG2"
-                    },
-                    "serviceDefinitionRef": {
-                      "serviceDefinitionRefId": null
-                    },
-                    "seatOnLeg": {
-                      "seat": {
-                        "columnId": "B",
-                        "rowNumber": 43
-                      }
-                    }
+                    "seatOnLeg": null
                   }
                 }
               ]
@@ -622,11 +393,11 @@
                 "farePriceTypeCode": "NET",
                 "price": {
                   "baseAmount": {
-                    "cdata": "1490.00",
+                    "cdata": "910.00",
                     "curCode": "QAR"
                   },
                   "totalAmount": {
-                    "cdata": "1710.00",
+                    "cdata": "1390.00",
                     "curCode": "QAR"
                   },
                   "taxSummary": [
@@ -634,26 +405,34 @@
                       "tax": [
                         {
                           "amount": {
-                            "cdata": "40.00",
+                            "cdata": "330.00",
                             "curCode": "QAR"
                           },
-                          "taxCode": "L7",
+                          "taxCode": "YQ",
                           "taxName": null
                         },
                         {
                           "amount": {
-                            "cdata": "30.00",
+                            "cdata": "80.00",
                             "curCode": "QAR"
                           },
-                          "taxCode": "OP",
+                          "taxCode": "AE",
                           "taxName": null
                         },
                         {
                           "amount": {
-                            "cdata": "140.00",
+                            "cdata": "50.00",
                             "curCode": "QAR"
                           },
-                          "taxCode": "SG",
+                          "taxCode": "F6",
+                          "taxName": null
+                        },
+                        {
+                          "amount": {
+                            "cdata": "10.00",
+                            "curCode": "QAR"
+                          },
+                          "taxCode": "TP",
                           "taxName": null
                         },
                         {
@@ -666,7 +445,7 @@
                         }
                       ],
                       "totalTaxAmount": {
-                        "cdata": "220.00",
+                        "cdata": "480.00",
                         "curCode": "QAR"
                       }
                     }
@@ -682,7 +461,7 @@
             "issueDate": "2025-11-18",
             "issueTime": null,
             "issuingCarrier": {
-              "airlineDesigCode": "SQ"
+              "airlineDesigCode": "EY"
             },
             "ticketNumber": null
           },
@@ -690,7 +469,7 @@
           "ticket": [
             {
               "ticketDocTypeCode": "T",
-              "ticketNumber": "6182468132389",
+              "ticketNumber": "6072407050161",
               "reportingTypeCode": "BSP",
               "primaryDocInd": null,
               "coupon": [
@@ -699,7 +478,7 @@
                   "couponStatusCode": "T",
                   "currentCouponFlightInfoRef": {
                     "currentAirlinePaxSegmentRef": {
-                      "paxSegmentRefId": ["SEG2"]
+                      "paxSegmentRefId": ["SEG1"]
                     }
                   },
                   "consumedAtIssuanceInd": null,
@@ -722,19 +501,60 @@
                 "farePriceTypeCode": "NET",
                 "price": {
                   "baseAmount": {
-                    "cdata": "150.00",
+                    "cdata": "910.00",
                     "curCode": "QAR"
                   },
                   "totalAmount": {
-                    "cdata": "150.00",
+                    "cdata": "1390.00",
                     "curCode": "QAR"
                   },
                   "taxSummary": [
                     {
-                      "tax": [],
+                      "tax": [
+                        {
+                          "amount": {
+                            "cdata": "330.00",
+                            "curCode": "QAR"
+                          },
+                          "taxCode": "YQ",
+                          "taxName": null
+                        },
+                        {
+                          "amount": {
+                            "cdata": "80.00",
+                            "curCode": "QAR"
+                          },
+                          "taxCode": "AE",
+                          "taxName": null
+                        },
+                        {
+                          "amount": {
+                            "cdata": "50.00",
+                            "curCode": "QAR"
+                          },
+                          "taxCode": "F6",
+                          "taxName": null
+                        },
+                        {
+                          "amount": {
+                            "cdata": "10.00",
+                            "curCode": "QAR"
+                          },
+                          "taxCode": "TP",
+                          "taxName": null
+                        },
+                        {
+                          "amount": {
+                            "cdata": "10.00",
+                            "curCode": "QAR"
+                          },
+                          "taxCode": "ZR",
+                          "taxName": null
+                        }
+                      ],
                       "totalTaxAmount": {
-                        "cdata": "0.00",
-                        "curCode": "SGD"
+                        "cdata": "480.00",
+                        "curCode": "QAR"
                       }
                     }
                   ]
@@ -749,7 +569,7 @@
             "issueDate": "2025-11-18",
             "issueTime": null,
             "issuingCarrier": {
-              "airlineDesigCode": "SQ"
+              "airlineDesigCode": "EY"
             },
             "ticketNumber": null
           },
@@ -757,7 +577,7 @@
           "ticket": [
             {
               "ticketDocTypeCode": "T",
-              "ticketNumber": "6182468132388",
+              "ticketNumber": "6072407050162",
               "reportingTypeCode": "BSP",
               "primaryDocInd": null,
               "coupon": [
@@ -766,427 +586,9 @@
                   "couponStatusCode": "T",
                   "currentCouponFlightInfoRef": {
                     "currentAirlinePaxSegmentRef": {
-                      "paxSegmentRefId": ["SEG2"]
+                      "paxSegmentRefId": ["SEG1"]
                     }
                   },
-                  "consumedAtIssuanceInd": null,
-                  "nonRefundableInd": null,
-                  "nonInterlineableInd": null,
-                  "nonCommissionableInd": null,
-                  "nonReissuableNonExchInd": null
-                }
-              ],
-              "taxOnEmdInd": null,
-              "exchReissueInd": null,
-              "presentCreditCardInd": null
-            }
-          ]
-        },
-        {
-          "fareDetail": {
-            "farePriceType": [
-              {
-                "farePriceTypeCode": "NET",
-                "price": {
-                  "baseAmount": {
-                    "cdata": "1120.00",
-                    "curCode": "QAR"
-                  },
-                  "totalAmount": {
-                    "cdata": "1340.00",
-                    "curCode": "QAR"
-                  },
-                  "taxSummary": [
-                    {
-                      "tax": [
-                        {
-                          "amount": {
-                            "cdata": "40.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "L7",
-                          "taxName": null
-                        },
-                        {
-                          "amount": {
-                            "cdata": "30.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "OP",
-                          "taxName": null
-                        },
-                        {
-                          "amount": {
-                            "cdata": "140.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "SG",
-                          "taxName": null
-                        },
-                        {
-                          "amount": {
-                            "cdata": "10.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "ZR",
-                          "taxName": null
-                        }
-                      ],
-                      "totalTaxAmount": {
-                        "cdata": "220.00",
-                        "curCode": "QAR"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          "paxRefId": "PAX4",
-          "referencedOrder": null,
-          "servicingAgency": null,
-          "originalIssueInfo": {
-            "issueDate": "2025-11-18",
-            "issueTime": null,
-            "issuingCarrier": {
-              "airlineDesigCode": "SQ"
-            },
-            "ticketNumber": null
-          },
-          "bookletQty": 1,
-          "ticket": [
-            {
-              "ticketDocTypeCode": "T",
-              "ticketNumber": "6182468132390",
-              "reportingTypeCode": "BSP",
-              "primaryDocInd": null,
-              "coupon": [
-                {
-                  "couponNumber": 1,
-                  "couponStatusCode": "T",
-                  "currentCouponFlightInfoRef": {
-                    "currentAirlinePaxSegmentRef": {
-                      "paxSegmentRefId": ["SEG2"]
-                    }
-                  },
-                  "consumedAtIssuanceInd": null,
-                  "nonRefundableInd": null,
-                  "nonInterlineableInd": null,
-                  "nonCommissionableInd": null,
-                  "nonReissuableNonExchInd": null
-                }
-              ],
-              "taxOnEmdInd": null,
-              "exchReissueInd": null,
-              "presentCreditCardInd": null
-            }
-          ]
-        },
-        {
-          "fareDetail": {
-            "farePriceType": [
-              {
-                "farePriceTypeCode": "NET",
-                "price": {
-                  "baseAmount": {
-                    "cdata": "1490.00",
-                    "curCode": "QAR"
-                  },
-                  "totalAmount": {
-                    "cdata": "1710.00",
-                    "curCode": "QAR"
-                  },
-                  "taxSummary": [
-                    {
-                      "tax": [
-                        {
-                          "amount": {
-                            "cdata": "40.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "L7",
-                          "taxName": null
-                        },
-                        {
-                          "amount": {
-                            "cdata": "30.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "OP",
-                          "taxName": null
-                        },
-                        {
-                          "amount": {
-                            "cdata": "140.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "SG",
-                          "taxName": null
-                        },
-                        {
-                          "amount": {
-                            "cdata": "10.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "ZR",
-                          "taxName": null
-                        }
-                      ],
-                      "totalTaxAmount": {
-                        "cdata": "220.00",
-                        "curCode": "QAR"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          "paxRefId": "PAX2",
-          "referencedOrder": null,
-          "servicingAgency": null,
-          "originalIssueInfo": {
-            "issueDate": "2025-11-18",
-            "issueTime": null,
-            "issuingCarrier": {
-              "airlineDesigCode": "SQ"
-            },
-            "ticketNumber": null
-          },
-          "bookletQty": 1,
-          "ticket": [
-            {
-              "ticketDocTypeCode": "J",
-              "ticketNumber": "6184577035217",
-              "reportingTypeCode": "BSP",
-              "primaryDocInd": null,
-              "coupon": [
-                {
-                  "couponNumber": 1,
-                  "couponStatusCode": "T",
-                  "currentCouponFlightInfoRef": null,
-                  "consumedAtIssuanceInd": null,
-                  "nonRefundableInd": null,
-                  "nonInterlineableInd": null,
-                  "nonCommissionableInd": null,
-                  "nonReissuableNonExchInd": null
-                }
-              ],
-              "taxOnEmdInd": null,
-              "exchReissueInd": null,
-              "presentCreditCardInd": null
-            }
-          ]
-        },
-        {
-          "fareDetail": {
-            "farePriceType": [
-              {
-                "farePriceTypeCode": "NET",
-                "price": {
-                  "baseAmount": {
-                    "cdata": "200.00",
-                    "curCode": "QAR"
-                  },
-                  "totalAmount": {
-                    "cdata": "200.00",
-                    "curCode": "QAR"
-                  },
-                  "taxSummary": [
-                    {
-                      "tax": [],
-                      "totalTaxAmount": {
-                        "cdata": "0",
-                        "curCode": "QAR"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          "paxRefId": "PAX2",
-          "referencedOrder": null,
-          "servicingAgency": null,
-          "originalIssueInfo": {
-            "issueDate": "2025-11-18",
-            "issueTime": null,
-            "issuingCarrier": {
-              "airlineDesigCode": "SQ"
-            },
-            "ticketNumber": null
-          },
-          "bookletQty": 1,
-          "ticket": [
-            {
-              "ticketDocTypeCode": "Y",
-              "ticketNumber": "6184577035218",
-              "reportingTypeCode": "BSP",
-              "primaryDocInd": null,
-              "coupon": [
-                {
-                  "couponNumber": 1,
-                  "couponStatusCode": "B",
-                  "currentCouponFlightInfoRef": null,
-                  "consumedAtIssuanceInd": null,
-                  "nonRefundableInd": null,
-                  "nonInterlineableInd": null,
-                  "nonCommissionableInd": null,
-                  "nonReissuableNonExchInd": null
-                }
-              ],
-              "taxOnEmdInd": null,
-              "exchReissueInd": null,
-              "presentCreditCardInd": null
-            }
-          ]
-        },
-        {
-          "fareDetail": {
-            "farePriceType": [
-              {
-                "farePriceTypeCode": "NET",
-                "price": {
-                  "baseAmount": {
-                    "cdata": "1120.00",
-                    "curCode": "QAR"
-                  },
-                  "totalAmount": {
-                    "cdata": "1340.00",
-                    "curCode": "QAR"
-                  },
-                  "taxSummary": [
-                    {
-                      "tax": [
-                        {
-                          "amount": {
-                            "cdata": "40.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "L7",
-                          "taxName": null
-                        },
-                        {
-                          "amount": {
-                            "cdata": "30.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "OP",
-                          "taxName": null
-                        },
-                        {
-                          "amount": {
-                            "cdata": "140.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "SG",
-                          "taxName": null
-                        },
-                        {
-                          "amount": {
-                            "cdata": "10.00",
-                            "curCode": "QAR"
-                          },
-                          "taxCode": "ZR",
-                          "taxName": null
-                        }
-                      ],
-                      "totalTaxAmount": {
-                        "cdata": "220.00",
-                        "curCode": "QAR"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          "paxRefId": "PAX4",
-          "referencedOrder": null,
-          "servicingAgency": null,
-          "originalIssueInfo": {
-            "issueDate": "2025-11-18",
-            "issueTime": null,
-            "issuingCarrier": {
-              "airlineDesigCode": "SQ"
-            },
-            "ticketNumber": null
-          },
-          "bookletQty": 1,
-          "ticket": [
-            {
-              "ticketDocTypeCode": "J",
-              "ticketNumber": "6184577035216",
-              "reportingTypeCode": "BSP",
-              "primaryDocInd": null,
-              "coupon": [
-                {
-                  "couponNumber": 1,
-                  "couponStatusCode": "T",
-                  "currentCouponFlightInfoRef": null,
-                  "consumedAtIssuanceInd": null,
-                  "nonRefundableInd": null,
-                  "nonInterlineableInd": null,
-                  "nonCommissionableInd": null,
-                  "nonReissuableNonExchInd": null
-                }
-              ],
-              "taxOnEmdInd": null,
-              "exchReissueInd": null,
-              "presentCreditCardInd": null
-            }
-          ]
-        },
-        {
-          "fareDetail": {
-            "farePriceType": [
-              {
-                "farePriceTypeCode": "NET",
-                "price": {
-                  "baseAmount": {
-                    "cdata": "200.00",
-                    "curCode": "QAR"
-                  },
-                  "totalAmount": {
-                    "cdata": "200.00",
-                    "curCode": "QAR"
-                  },
-                  "taxSummary": [
-                    {
-                      "tax": [],
-                      "totalTaxAmount": {
-                        "cdata": "0",
-                        "curCode": "QAR"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          "paxRefId": "PAX4",
-          "referencedOrder": null,
-          "servicingAgency": null,
-          "originalIssueInfo": {
-            "issueDate": "2025-11-18",
-            "issueTime": null,
-            "issuingCarrier": {
-              "airlineDesigCode": "SQ"
-            },
-            "ticketNumber": null
-          },
-          "bookletQty": 1,
-          "ticket": [
-            {
-              "ticketDocTypeCode": "Y",
-              "ticketNumber": "6184577035219",
-              "reportingTypeCode": "BSP",
-              "primaryDocInd": null,
-              "coupon": [
-                {
-                  "couponNumber": 1,
-                  "couponStatusCode": "B",
-                  "currentCouponFlightInfoRef": null,
                   "consumedAtIssuanceInd": null,
                   "nonRefundableInd": null,
                   "nonInterlineableInd": null,
@@ -1212,20 +614,7 @@
               "typeCode": "Checked",
               "weightAllowance": [
                 {
-                  "maximumWeightMeasure": 25
-                }
-              ],
-              "bdc": null
-            },
-            {
-              "applicablePartyText": "Traveler",
-              "baggageAllowanceId": "FBA2",
-              "descText": [],
-              "rfisc": null,
-              "typeCode": "Checked",
-              "weightAllowance": [
-                {
-                  "maximumWeightMeasure": 10
+                  "maximumWeightMeasure": 0
                 }
               ],
               "bdc": null
@@ -1238,26 +627,26 @@
               "contactInfoId": "CTCPAX2_1",
               "phone": [
                 {
-                  "phoneNumber": "9123345889"
+                  "phoneNumber": "94890322"
                 }
               ],
               "emailAddress": [
                 {
-                  "emailAddressText": "KEERTHYJOIS@GMAIL.COM",
+                  "emailAddressText": "HARDACCEPT@SQTESTEMAIL.SG",
                   "contactTypeText": "OTH"
                 }
               ]
             },
             {
-              "contactInfoId": "CTCPAX4_1",
+              "contactInfoId": "CTCPAX3_1",
               "phone": [
                 {
-                  "phoneNumber": "9190702305"
+                  "phoneNumber": "3245634634"
                 }
               ],
               "emailAddress": [
                 {
-                  "emailAddressText": "ROSSGELLER@GMAIL.COM",
+                  "emailAddressText": "HARDACCEPT@SQTESTEMAIL.SG",
                   "contactTypeText": "OTH"
                 }
               ]
@@ -1267,43 +656,24 @@
         "serviceDefinitionList": {
           "serviceDefinition": [
             {
-              "serviceDefinitionId": "PENF_1",
-              "name": "PENALTY FEE",
-              "ownerCode": "SQ",
-              "rfic": "D",
+              "serviceDefinitionId": "DBML_1",
+              "name": "Meal",
+              "ownerCode": "EY",
+              "rfic": null,
               "rfisc": null,
-              "serviceCode": "PENF",
-              "airlineTaxonomy": [],
+              "serviceCode": "DBML",
+              "airlineTaxonomy": [
+                {
+                  "descText": "Diabetic Meal Request",
+                  "taxonomyCode": "044C"
+                }
+              ],
               "serviceDefinitionAssociation": null
-            },
-            {
-              "serviceDefinitionId": "SERV_1",
-              "name": "Specific Seat Request",
-              "ownerCode": "SQ",
-              "rfic": "A",
-              "rfisc": "0B5",
-              "serviceCode": "RQST",
-              "airlineTaxonomy": [],
-              "serviceDefinitionAssociation": {
-                "baggageAllowanceRef": null
-              }
-            },
-            {
-              "serviceDefinitionId": "SERV_2",
-              "name": "Specific Seat Request",
-              "ownerCode": "SQ",
-              "rfic": "A",
-              "rfisc": "0B5",
-              "serviceCode": "RQST",
-              "airlineTaxonomy": [],
-              "serviceDefinitionAssociation": {
-                "baggageAllowanceRef": null
-              }
             },
             {
               "serviceDefinitionId": "BAGALLOW_1",
               "name": "Bag allowances",
-              "ownerCode": "SQ",
+              "ownerCode": "EY",
               "rfic": null,
               "rfisc": null,
               "serviceCode": null,
@@ -1315,37 +685,38 @@
               }
             },
             {
-              "serviceDefinitionId": "BAGALLOW_2",
-              "name": "Bag allowances",
-              "ownerCode": "SQ",
-              "rfic": null,
-              "rfisc": null,
-              "serviceCode": null,
-              "airlineTaxonomy": [],
-              "serviceDefinitionAssociation": {
-                "baggageAllowanceRef": {
-                  "baggageAllowanceRefId": ["FBA2"]
+              "serviceDefinitionId": "NF-XWBG-C-0DG",
+              "name": "Extra Baggage Service",
+              "ownerCode": "WY",
+              "rfic": "C",
+              "rfisc": "0DG",
+              "serviceCode": "NF",
+              "airlineTaxonomy": [
+                {
+                  "descText": null,
+                  "taxonomyCode": "F648"
                 }
-              }
+              ],
+              "serviceDefinitionAssociation": null
             }
           ]
         },
         "originDestList": {
           "originDest": [
             {
-              "destCode": "DXB",
-              "originCode": "SIN",
-              "originDestId": "OND2",
-              "paxJourneyRefId": ["FLT2"]
+              "destCode": "LHR",
+              "originCode": "AUH",
+              "originDestId": "OND1",
+              "paxJourneyRefId": ["FLT1"]
             }
           ]
         },
         "paxJourneyList": {
           "paxJourney": [
             {
-              "paxJourneyId": "FLT2",
-              "duration": "PT7H30M",
-              "paxSegmentRefId": ["SEG2"]
+              "paxJourneyId": "FLT1",
+              "duration": "PT7H50M",
+              "paxSegmentRefId": ["SEG1"]
             }
           ]
         },
@@ -1353,53 +724,33 @@
           "priceClass": [
             {
               "fareBasisCode": null,
-              "name": "Economy Value",
+              "name": "Economy Basic",
               "cabinType": [],
-              "code": "FF41SGS",
-              "priceClassId": "FF41SGS",
+              "code": "YBASIC",
+              "priceClassId": "YBASIC",
               "desc": [
                 {
-                  "descText": "Earn KrisFlyer miles - 50%",
+                  "descText": "Miles earned per guest - 15%",
                   "markupStyleText": null,
                   "url": null
                 },
                 {
-                  "descText": "Upgrade with miles - Not Allowed",
+                  "descText": "Cabin baggage allowance - Find more information on baggage terms at https://www.etihad.com/en-ae/fly-etihad/baggage",
                   "markupStyleText": null,
                   "url": null
                 },
                 {
-                  "descText": "Cabin baggage - 1 piece Up to 7kg each. Sum of length, width and height of each piece should not exceed 115cm.",
+                  "descText": "Checked baggage allowance per guest - Checked baggage allowance isn't included. Find more information on baggage terms at https://www.etihad.com/en-ae/fly-etihad/baggage",
                   "markupStyleText": null,
                   "url": null
                 },
                 {
-                  "descText": "Check-in baggage - 25kg",
+                  "descText": "Cancellation / Refund - Cancellation isn't allowed",
                   "markupStyleText": null,
                   "url": null
                 },
                 {
-                  "descText": "Booking cancellation fee - SGD 200",
-                  "markupStyleText": null,
-                  "url": null
-                },
-                {
-                  "descText": "Booking no-show fee - SGD 130",
-                  "markupStyleText": null,
-                  "url": null
-                },
-                {
-                  "descText": "Booking change fee - SGD 70",
-                  "markupStyleText": null,
-                  "url": null
-                },
-                {
-                  "descText": "Booking no-show fee - SGD 130",
-                  "markupStyleText": null,
-                  "url": null
-                },
-                {
-                  "descText": "Seat Selection - Chargeable",
+                  "descText": "Change / Reissue - Changes not allowed",
                   "markupStyleText": null,
                   "url": null
                 }
@@ -1412,94 +763,86 @@
             {
               "paxId": "PAX2",
               "ptc": "ADT",
-              "paxRefId": "PAX3",
+              "paxRefId": null,
               "contactInfoRefId": "CTCPAX2_1",
               "birthdate": null,
               "individual": {
                 "individualId": "PAX2",
                 "genderCode": "F",
-                "birthdate": "2008-03-14",
-                "titleName": "MISS",
-                "givenName": ["LEONA"],
-                "surname": "SANAM",
+                "birthdate": "1994-01-01",
+                "titleName": "MR",
+                "givenName": ["RAVI"],
+                "surname": "MANI",
                 "middleName": []
               },
               "identityDoc": [
                 {
                   "identityDocTypeCode": "PT",
-                  "identityDocId": "AA3644744",
+                  "identityDocId": "V123456",
+                  "issuingCountryCode": "GB",
+                  "citizenshipCountryCode": "GB",
+                  "expiryDate": "2035-01-01",
+                  "givenName": ["RAVI"],
+                  "middleName": [],
+                  "surname": "MANI",
+                  "genderCode": "F",
+                  "birthdate": "1980-04-10"
+                },
+                {
+                  "identityDocTypeCode": "PT",
+                  "identityDocId": "AAPP12345",
                   "issuingCountryCode": "AU",
                   "citizenshipCountryCode": "AU",
-                  "expiryDate": "2040-05-23",
-                  "givenName": ["LEONA"],
+                  "expiryDate": "1949-01-01",
+                  "givenName": ["RAVI"],
                   "middleName": [],
-                  "surname": "SANAM",
-                  "genderCode": "F",
-                  "birthdate": "2008-03-14"
+                  "surname": "MANI",
+                  "genderCode": "M",
+                  "birthdate": "1994-01-01"
                 }
               ],
-              "profileConsentInd": null
-            },
-            {
-              "paxId": "PAX4",
-              "ptc": "CHD",
-              "paxRefId": null,
-              "contactInfoRefId": "CTCPAX4_1",
-              "birthdate": null,
-              "individual": {
-                "individualId": "PAX4",
-                "genderCode": "M",
-                "birthdate": "2016-10-20",
-                "titleName": "MR",
-                "givenName": ["ROSS"],
-                "surname": "GELLER",
-                "middleName": []
-              },
-              "identityDoc": [
+              "loyaltyProgramAccount": [
                 {
-                  "identityDocTypeCode": "PT",
-                  "identityDocId": "ABC123",
-                  "issuingCountryCode": "IN",
-                  "citizenshipCountryCode": "IN",
-                  "expiryDate": "2030-10-31",
-                  "givenName": ["ROSS"],
-                  "middleName": [],
-                  "surname": "GELLER",
-                  "genderCode": "M",
-                  "birthdate": "2016-10-20"
+                  "accountNumber": "129700856003",
+                  "loyaltyProgram": {
+                    "carrier": {
+                      "airlineDesigCode": "EY"
+                    }
+                  }
                 }
               ],
               "profileConsentInd": null
             },
             {
               "paxId": "PAX3",
-              "ptc": "INF",
-              "paxRefId": "PAX2",
-              "contactInfoRefId": null,
+              "ptc": "CHD",
+              "paxRefId": null,
+              "contactInfoRefId": "CTCPAX3_1",
               "birthdate": null,
               "individual": {
                 "individualId": "PAX3",
-                "genderCode": "M",
-                "birthdate": "2024-06-01",
-                "titleName": null,
-                "givenName": ["JON"],
-                "surname": "SNOW",
+                "genderCode": "F",
+                "birthdate": "2015-01-01",
+                "titleName": "MISS",
+                "givenName": ["RANJAY"],
+                "surname": "CHID",
                 "middleName": []
               },
               "identityDoc": [
                 {
                   "identityDocTypeCode": "PT",
-                  "identityDocId": "INF0013123",
-                  "issuingCountryCode": "IN",
-                  "citizenshipCountryCode": "IN",
-                  "expiryDate": "2026-08-26",
-                  "givenName": ["JON"],
+                  "identityDocId": "CC83983WFDF",
+                  "issuingCountryCode": "AX",
+                  "citizenshipCountryCode": "AX",
+                  "expiryDate": "2030-01-02",
+                  "givenName": ["RANJAY"],
                   "middleName": [],
-                  "surname": "SNOW",
-                  "genderCode": "M",
-                  "birthdate": "2024-06-01"
+                  "surname": "CHID",
+                  "genderCode": "F",
+                  "birthdate": "2015-01-01"
                 }
               ],
+              "loyaltyProgramAccount": [],
               "profileConsentInd": null
             }
           ]
@@ -1510,7 +853,7 @@
               "disclosureId": "DIS1",
               "desc": [
                 {
-                  "descText": "SINGAPORE AIRLINES",
+                  "descText": "ETIHAD AIRWAYS",
                   "url": null
                 }
               ]
@@ -1520,7 +863,7 @@
         "paxSegmentList": {
           "paxSegment": [
             {
-              "paxSegmentId": "SEG2",
+              "paxSegmentId": "SEG1",
               "datedMarketingSegmentRefId": "DMS1"
             }
           ]
@@ -1530,18 +873,18 @@
             {
               "datedMarketingSegmentId": "DMS1",
               "datedOperatingSegmentRefId": "DOS1",
-              "carrierDesigCode": "SQ",
+              "carrierDesigCode": "EY",
               "arrival": {
-                "aircraftScheduledDateTime": "2026-01-26T18:35:00",
-                "iataLocationCode": "DXB",
-                "stationName": "Dubai International Airport, AE"
+                "aircraftScheduledDateTime": "2026-01-16T14:30:00",
+                "iataLocationCode": "LHR",
+                "stationName": "London Heathrow Airport, GB"
               },
               "dep": {
-                "aircraftScheduledDateTime": "2026-01-26T15:05:00",
-                "iataLocationCode": "SIN",
-                "stationName": "Singapore Changi Airport, SG"
+                "aircraftScheduledDateTime": "2026-01-16T10:40:00",
+                "iataLocationCode": "AUH",
+                "stationName": "Abu Dhabi International Airport, AE"
               },
-              "marketingCarrierFlightNumberText": "494"
+              "marketingCarrierFlightNumberText": "065"
             }
           ]
         },
@@ -1549,8 +892,8 @@
           "datedOperatingSegment": [
             {
               "datedOperatingSegmentId": "DOS1",
-              "carrierDesigCode": "SQ",
-              "duration": "PT7H30M",
+              "carrierDesigCode": "EY",
+              "duration": null,
               "operatingCarrierFlightNumberText": null
             }
           ]

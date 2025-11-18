@@ -474,7 +474,6 @@ function extractTickets(data) {
             });
         });
     }
-    console.log("seatDetailsssssssssssssssssssssssssssssssss", seatDetails);
     if (!Array.isArray(ticketDocInfoList)) {
         return tickets;
     }
@@ -513,7 +512,6 @@ function extractTickets(data) {
         const issueTime = ticketDocInfo.originalIssueInfo?.issueTime || null;
         // Extract passenger info
         const paxRefId = ticketDocInfo.paxRefId;
-        console.log("paxRefIddddddddddddddddddddddddddddddddddd", paxRefId);
         const passenger = paxRefId ? extractPassengerInfo(data, paxRefId) : null;
         // Extract fare information
         const baseFare = extractMonetaryAmount(ticketDocInfo, "fareDetail.farePriceType[0].price.baseAmount");

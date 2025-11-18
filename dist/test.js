@@ -61,7 +61,7 @@ try {
     console.log("=".repeat(80));
     console.log("FULL EXTRACTED JSON");
     console.log("=".repeat(80));
-    // console.log(JSON.stringify(summary, null, 2));
+    console.log(JSON.stringify(summary, null, 2));
     console.log();
     console.log("=".repeat(80));
     console.log();
@@ -110,7 +110,7 @@ try {
             if (ticket.passenger.loyaltyPrograms.length > 0) {
                 console.log("    Loyalty Programs:");
                 ticket.passenger.loyaltyPrograms.forEach((lp, lpIdx) => {
-                    console.log(`      [${lpIdx + 1}] ${lp.programCode} - ${lp.accountNumber} (${lp.carrier})`);
+                    console.log(`      [${lpIdx + 1}] ${lp.carrier} - ${lp.accountNumber}`);
                     console.log(`          ref: ${lp.ref}`);
                 });
             }
