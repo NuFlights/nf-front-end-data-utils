@@ -29,6 +29,7 @@ export interface BaggageAllowance {
     pieceQty: number | null;
     weightValue: number | null;
     weightUnit: string | null;
+    typeCode: string | null;
     ref: string;
 }
 export interface SegmentInfo {

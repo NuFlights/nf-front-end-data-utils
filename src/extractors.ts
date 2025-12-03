@@ -282,9 +282,15 @@ function extractTaxBreakdown(
  */
 function extractBaggageAllowance(
   data: any,
-  baggageRefIds: string[]
+  segmentRefIds: string[],
+  paxRefIds: string[]
 ): BaggageAllowance | null {
-  if (!baggageRefIds || baggageRefIds.length === 0) {
+  if (
+    !paxRefIds ||
+    paxRefIds.length === 0 ||
+    !segmentRefIds ||
+    segmentRefIds.length === 0
+  ) {
     return null;
   }
 
@@ -292,40 +298,125 @@ function extractBaggageAllowance(
     "iataOrderRetrieve.response.dataLists.baggageAllowanceList.baggageAllowance";
   const baggageList = safeExtract(data, baggageListPath, []);
 
-  if (!Array.isArray(baggageList)) {
+  const orderItemPath = "iataOrderRetrieve.response.order[0].orderItem";
+  const orderItems = safeExtract(data, orderItemPath, []);
+
+  const serviceDefinitionPath =
+    "iataOrderRetrieve.response.dataLists.serviceDefinitionList.serviceDefinition";
+  const serviceDefinition = safeExtract(data, serviceDefinitionPath, []);
+
+  if (
+    !Array.isArray(orderItems) ||
+    !Array.isArray(serviceDefinition) ||
+    !Array.isArray(baggageList)
+  ) {
     return {
       pieceQty: null,
       weightValue: null,
       weightUnit: null,
+      typeCode: null,
       ref: errorRef(baggageListPath, "Baggage allowance list not found"),
     };
   }
 
-  // Find first matching baggage allowance
-  for (let i = 0; i < baggageList.length; i++) {
-    if (baggageRefIds.includes(baggageList[i].baggageAllowanceId)) {
-      const baggage = baggageList[i];
-      const baggagePath = `${baggageListPath}[${i}]`;
-
-      return {
-        pieceQty: baggage.pieceAllowance?.totalQty || null,
-        weightValue: baggage.weightAllowance?.[0]?.maximumWeightMeasure || null,
-        weightUnit:
-          baggage.weightAllowance?.[0]?.weightUnitOfMeasurement || null,
-        ref: baggagePath,
-      };
+  const allServicesFromOrderItems: any[] = [];
+  for (const orderItem of orderItems) {
+    const orderItemServicePath = orderItem.service;
+    for (const service of orderItemServicePath) {
+      if (
+        service.orderServiceAssociation &&
+        service.orderServiceAssociation.serviceDefinitionRef &&
+        service.orderServiceAssociation.serviceDefinitionRef
+          .serviceDefinitionRefId
+      ) {
+        allServicesFromOrderItems.push(service);
+      }
     }
   }
-
-  return {
-    pieceQty: null,
-    weightValue: null,
-    weightUnit: null,
-    ref: errorRef(
-      baggageListPath,
-      `Baggage allowance not found for ref_ids: ${baggageRefIds.join(", ")}`
-    ),
-  };
+  if (allServicesFromOrderItems.length === 0) {
+    return {
+      pieceQty: null,
+      weightValue: null,
+      weightUnit: null,
+      typeCode: null,
+      ref: errorRef(baggageListPath, "Baggage allowance list not found"),
+    };
+  }
+  if (allServicesFromOrderItems.length > 0) {
+    console.log("allServicesFromOrderItems", allServicesFromOrderItems);
+    const findService = allServicesFromOrderItems.find((service) => {
+      const paxSegmentRefId =
+        service?.orderServiceAssociation?.paxSegmentRef?.paxSegmentRefId;
+      const paxRefId = service?.paxRefId;
+      if (
+        segmentRefIds.includes(paxSegmentRefId) &&
+        paxRefIds.includes(paxRefId)
+      ) {
+        return service;
+      }
+    });
+    if (findService) {
+      const serviceDefinitionRefId =
+        findService.orderServiceAssociation.serviceDefinitionRef
+          .serviceDefinitionRefId;
+      const findServiceDefinition = serviceDefinition.find((serviceDef) => {
+        return serviceDef.serviceDefinitionId === serviceDefinitionRefId;
+      });
+      if (findServiceDefinition) {
+        const baggageAllowanceRefId =
+          findServiceDefinition?.serviceDefinitionAssociation
+            ?.baggageAllowanceRef?.baggageAllowanceRefId || [];
+        const baggage = baggageList.find((baggageItem) => {
+          return baggageAllowanceRefId.includes(
+            baggageItem?.baggageAllowanceId
+          );
+        });
+        if (baggage) {
+          return {
+            pieceQty: baggage.pieceAllowance?.totalQty || null,
+            weightValue:
+              baggage.weightAllowance?.[0]?.maximumWeightMeasure || null,
+            weightUnit:
+              baggage.weightAllowance?.[0]?.weightUnitOfMeasurement || "KG",
+            typeCode: baggage?.typeCode || null,
+            ref: baggageListPath,
+          };
+        } else {
+          return {
+            pieceQty: null,
+            weightValue: null,
+            weightUnit: null,
+            typeCode: null,
+            ref: errorRef(baggageListPath, "Baggage allowance list not found"),
+          };
+        }
+      } else {
+        return {
+          pieceQty: null,
+          weightValue: null,
+          weightUnit: null,
+          typeCode: null,
+          ref: errorRef(baggageListPath, "Baggage allowance list not found"),
+        };
+      }
+    } else {
+      return {
+        pieceQty: null,
+        weightValue: null,
+        weightUnit: null,
+        typeCode: null,
+        ref: errorRef(baggageListPath, "Baggage allowance list not found"),
+      };
+    }
+  } else {
+    return {
+      pieceQty: null,
+      weightValue: null,
+      weightUnit: null,
+      typeCode: null,
+      ref: errorRef(baggageListPath, "Baggage allowance list not found"),
+    };
+  }
 }
 
 /**
@@ -407,7 +498,8 @@ function extractSegmentInfo(
       fareBasisCode: coupon.fareBasisCode || null,
       baggageAllowance: extractBaggageAllowance(
         data,
-        coupon.baggageAllowanceRefId || []
+        segmentRefId || [],
+        paxRefIds || []
       ),
       couponNumber: coupon.couponNumber || null,
       cabinTypeCode: null,
@@ -518,7 +610,8 @@ function extractSegmentInfo(
     fareBasisCode: fareBasisCode,
     baggageAllowance: extractBaggageAllowance(
       data,
-      coupon.baggageAllowanceRefId || []
+      segmentRefId || [],
+      paxRefIds || []
     ),
     couponNumber: coupon.couponNumber || null,
     cabinTypeCode: cabinTypeCode || null,
