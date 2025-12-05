@@ -378,7 +378,7 @@ function extractBaggageAllowance(
               baggage.weightAllowance?.[0]?.maximumWeightMeasure || null,
             weightUnit:
               baggage.weightAllowance?.[0]?.weightUnitOfMeasurement || "KG",
-            typeCode: baggage?.typeCode || null,
+            typeCode: baggage?.typeCode || "null",
             ref: baggageListPath,
           };
         } else {
@@ -737,6 +737,9 @@ export function extractTickets(data: any): TicketInfo[] {
     // Extract ticket type
     const ticketType = validTicket?.coupon?.[0]?.couponStatusCode || null;
 
+    // Extract ticket type
+    const ticketDocTypeCode = ticketDocInfo.ticket?.[0]?.ticketDocTypeCode || null;
+
     // Extract segments (coupons)
     const segments: SegmentInfo[] = [];
 
@@ -771,6 +774,7 @@ export function extractTickets(data: any): TicketInfo[] {
       taxBreakdown: taxBreakdown,
       totalAmount: totalAmount,
       ticketType: ticketType,
+      ticketDocTypeCode: ticketDocTypeCode,  
       segments,
       seatAmount,
       reportingTypeCode,

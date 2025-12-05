@@ -66,6 +66,7 @@ export interface TicketInfo {
     taxBreakdown: TaxBreakdown[];
     totalAmount: MonetaryAmount;
     ticketType: string | null;
+    ticketDocTypeCode: string | null;
     segments: SegmentInfo[];
     seatAmount: any;
     reportingTypeCode: string | null;
