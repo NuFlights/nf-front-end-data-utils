@@ -464,6 +464,7 @@ function extractSegmentInfo(
       baggageAllowance: null,
       couponNumber: coupon.couponNumber || null,
       cabinTypeCode: null,
+      marketingCarrierFlightNumberText: null,
       seatOnLeg: null,
       ref: errorRef(couponPath, "Segment reference not found"),
     };
@@ -503,6 +504,7 @@ function extractSegmentInfo(
       ),
       couponNumber: coupon.couponNumber || null,
       cabinTypeCode: null,
+      marketingCarrierFlightNumberText: null,
       seatOnLeg: null,
       ref: errorRef(
         paxSegmentListPath,
@@ -599,6 +601,8 @@ function extractSegmentInfo(
   const destination = marketingSegment?.arrival?.iataLocationCode || null;
   const departureDateTime =
     marketingSegment?.dep?.aircraftScheduledDateTime || null;
+  const marketingCarrierFlightNumber =
+    marketingSegment?.marketingCarrierFlightNumberText || null;
 
   return {
     segmentRefId: segmentRefId,
@@ -615,6 +619,7 @@ function extractSegmentInfo(
     ),
     couponNumber: coupon.couponNumber || null,
     cabinTypeCode: cabinTypeCode || null,
+    marketingCarrierFlightNumberText: marketingCarrierFlightNumber?.padStart(4, "0") || null,
     ref: `${paxSegmentListPath}[${paxSegmentIndex}]`,
     seatOnLeg,
   };
@@ -738,7 +743,8 @@ export function extractTickets(data: any): TicketInfo[] {
     const ticketType = validTicket?.coupon?.[0]?.couponStatusCode || null;
 
     // Extract ticket type
-    const ticketDocTypeCode = ticketDocInfo.ticket?.[0]?.ticketDocTypeCode || null;
+    const ticketDocTypeCode =
+      ticketDocInfo.ticket?.[0]?.ticketDocTypeCode || null;
 
     // Extract segments (coupons)
     const segments: SegmentInfo[] = [];
@@ -774,7 +780,7 @@ export function extractTickets(data: any): TicketInfo[] {
       taxBreakdown: taxBreakdown,
       totalAmount: totalAmount,
       ticketType: ticketType,
-      ticketDocTypeCode: ticketDocTypeCode,  
+      ticketDocTypeCode: ticketDocTypeCode,
       segments,
       seatAmount,
       reportingTypeCode,

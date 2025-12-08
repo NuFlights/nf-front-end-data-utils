@@ -157,6 +157,10 @@ try {
         `        RBD: ${segment.rbd}, Fare Basis: ${segment.fareBasisCode}, Cabin Type Code: ${segment.cabinTypeCode}`
       );
       console.log(
+        `        Cabin Type Code: ${segment.cabinTypeCode}, Flight Number: ${segment.marketingCarrierFlightNumberText}`
+      );
+      
+      console.log(
         `        seat: ${segment?.seatOnLeg?.rowNumber}${segment?.seatOnLeg?.columnId}`
       );
       console.log(

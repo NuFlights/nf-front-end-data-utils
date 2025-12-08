@@ -49,6 +49,7 @@ export interface SegmentInfo {
   baggageAllowance: BaggageAllowance | null;
   couponNumber: string | null;
   cabinTypeCode?: string | null;
+  marketingCarrierFlightNumberText?: string | null;
   ref: string;
   seatOnLeg?: any;
 }

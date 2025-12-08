@@ -141,6 +141,7 @@ try {
             console.log(`    [${segIdx + 1}] ${segment.origin || "N/A"} -> ${segment.destination || "N/A"}`);
             console.log(`        Departure: ${segment.departureDatetime}`);
             console.log(`        RBD: ${segment.rbd}, Fare Basis: ${segment.fareBasisCode}, Cabin Type Code: ${segment.cabinTypeCode}`);
+            console.log(`        Cabin Type Code: ${segment.cabinTypeCode}, Flight Number: ${segment.marketingCarrierFlightNumberText}`);
             console.log(`        seat: ${segment?.seatOnLeg?.rowNumber}${segment?.seatOnLeg?.columnId}`);
             console.log(`        Status: ${segment.couponStatus}, Coupon #: ${segment.couponNumber}`);
             if (segment.baggageAllowance) {
