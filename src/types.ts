@@ -79,6 +79,7 @@ export interface TicketInfo {
   segments: SegmentInfo[];
   seatAmount: any;
   reportingTypeCode: string | null;
+  paymentTypeCode: string | null;
   ref: string;
 }
 

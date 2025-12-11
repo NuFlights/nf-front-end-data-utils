@@ -514,9 +514,9 @@ function extractSegmentInfo(
   }
 
   // Get marketing segment reference
-  const marketingSegmentRefId = paxSegment.datedMarketingSegmentRefId;
-  let rbd = paxSegment.marketingCarrierRbdCode || null;
-  let fareBasisCode = coupon.fareBasisCode || null;
+  const marketingSegmentRefId = paxSegment?.datedMarketingSegmentRefId;
+  let rbd = paxSegment?.marketingCarrierRbdCode || null;
+  let fareBasisCode = coupon?.fareBasisCode || null;
   let cabinTypeCode = null;
   let seatOnLeg = null;
 
@@ -525,10 +525,11 @@ function extractSegmentInfo(
   if (rbd === null || fareBasisCode === null) {
     if (Array.isArray(orderItems)) {
       for (const orderItem of orderItems) {
-        const orderItemFareDetailPath = orderItem.fareDetail;
-        const orderItemServicePath = orderItem.service;
+        const orderItemFareDetailPath = orderItem?.fareDetail;
+        const orderItemServicePath = orderItem?.service;
         for (const fareDetail of orderItemFareDetailPath) {
-          const orderItemFareDetailFareComponentPath = fareDetail.fareComponent;
+          const orderItemFareDetailFareComponentPath =
+            fareDetail?.fareComponent;
           for (const fareComponent of orderItemFareDetailFareComponentPath) {
             const paxSegmentRefId = Array.isArray(
               fareComponent?.paxSegmentRefId
@@ -537,12 +538,12 @@ function extractSegmentInfo(
               : [fareComponent?.paxSegmentRefId];
             if (paxSegmentRefId.includes(segmentRefId)) {
               if (rbd === null) {
-                rbd = fareComponent.rbd.rbdCode;
+                rbd = fareComponent?.rbd?.rbdCode || null;
               }
               if (fareBasisCode === null) {
-                fareBasisCode = fareComponent.fareBasisCode;
+                fareBasisCode = fareComponent?.fareBasisCode || null;
               }
-              cabinTypeCode = fareComponent.cabinType.cabinTypeCode;
+              cabinTypeCode = fareComponent?.cabinType?.cabinTypeCode || null;
               break;
             }
           }
@@ -619,7 +620,8 @@ function extractSegmentInfo(
     ),
     couponNumber: coupon.couponNumber || null,
     cabinTypeCode: cabinTypeCode || null,
-    marketingCarrierFlightNumberText: marketingCarrierFlightNumber?.padStart(4, "0") || null,
+    marketingCarrierFlightNumberText:
+      marketingCarrierFlightNumber?.padStart(4, "0") || null,
     ref: `${paxSegmentListPath}[${paxSegmentIndex}]`,
     seatOnLeg,
   };
@@ -636,6 +638,9 @@ export function extractTickets(data: any): TicketInfo[] {
 
   const orderPath = "iataOrderRetrieve.response.order";
   let orderList = safeExtract(data, orderPath, []);
+
+  const paymentFunctionsPath = "iataOrderRetrieve.paymentFunctions";
+  const paymentFunctions = safeExtract(data, paymentFunctionsPath, []);
 
   if (Array.isArray(orderList)) {
     orderList.forEach((order: any, orderIndex: number) => {
@@ -746,6 +751,12 @@ export function extractTickets(data: any): TicketInfo[] {
     const ticketDocTypeCode =
       ticketDocInfo.ticket?.[0]?.ticketDocTypeCode || null;
 
+    // Extract Payment Type Code
+    const paymentTypeCode =
+      paymentFunctions?.[0]?.paymentProcessingSummary
+        ?.paymentProcessingSummaryPaymentMethod?.settlementPlan
+        ?.paymentTypeCode || "";
+
     // Extract segments (coupons)
     const segments: SegmentInfo[] = [];
 
@@ -784,6 +795,7 @@ export function extractTickets(data: any): TicketInfo[] {
       segments,
       seatAmount,
       reportingTypeCode,
+      paymentTypeCode,
       ref: ticketDocPath,
     });
   });

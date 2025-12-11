@@ -437,9 +437,9 @@ function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx, tic
         };
     }
     // Get marketing segment reference
-    const marketingSegmentRefId = paxSegment.datedMarketingSegmentRefId;
-    let rbd = paxSegment.marketingCarrierRbdCode || null;
-    let fareBasisCode = coupon.fareBasisCode || null;
+    const marketingSegmentRefId = paxSegment?.datedMarketingSegmentRefId;
+    let rbd = paxSegment?.marketingCarrierRbdCode || null;
+    let fareBasisCode = coupon?.fareBasisCode || null;
     let cabinTypeCode = null;
     let seatOnLeg = null;
     const orderItemPath = "iataOrderRetrieve.response.order[0].orderItem";
@@ -447,22 +447,22 @@ function extractSegmentInfo(data, coupon, ticketIndex, ticketIdx, couponIdx, tic
     if (rbd === null || fareBasisCode === null) {
         if (Array.isArray(orderItems)) {
             for (const orderItem of orderItems) {
-                const orderItemFareDetailPath = orderItem.fareDetail;
-                const orderItemServicePath = orderItem.service;
+                const orderItemFareDetailPath = orderItem?.fareDetail;
+                const orderItemServicePath = orderItem?.service;
                 for (const fareDetail of orderItemFareDetailPath) {
-                    const orderItemFareDetailFareComponentPath = fareDetail.fareComponent;
+                    const orderItemFareDetailFareComponentPath = fareDetail?.fareComponent;
                     for (const fareComponent of orderItemFareDetailFareComponentPath) {
                         const paxSegmentRefId = Array.isArray(fareComponent?.paxSegmentRefId)
                             ? fareComponent?.paxSegmentRefId
                             : [fareComponent?.paxSegmentRefId];
                         if (paxSegmentRefId.includes(segmentRefId)) {
                             if (rbd === null) {
-                                rbd = fareComponent.rbd.rbdCode;
+                                rbd = fareComponent?.rbd?.rbdCode || null;
                             }
                             if (fareBasisCode === null) {
-                                fareBasisCode = fareComponent.fareBasisCode;
+                                fareBasisCode = fareComponent?.fareBasisCode || null;
                             }
-                            cabinTypeCode = fareComponent.cabinType.cabinTypeCode;
+                            cabinTypeCode = fareComponent?.cabinType?.cabinTypeCode || null;
                             break;
                         }
                     }
@@ -537,6 +537,8 @@ function extractTickets(data) {
     let ticketDocInfoList = safeExtract(data, ticketDocInfoPath, []);
     const orderPath = "iataOrderRetrieve.response.order";
     let orderList = safeExtract(data, orderPath, []);
+    const paymentFunctionsPath = "iataOrderRetrieve.paymentFunctions";
+    const paymentFunctions = safeExtract(data, paymentFunctionsPath, []);
     if (Array.isArray(orderList)) {
         orderList.forEach((order, orderIndex) => {
             order?.orderItem?.forEach((orderItemRecord, orderItemRecordIndex) => {
@@ -609,6 +611,10 @@ function extractTickets(data) {
         const ticketType = validTicket?.coupon?.[0]?.couponStatusCode || null;
         // Extract ticket type
         const ticketDocTypeCode = ticketDocInfo.ticket?.[0]?.ticketDocTypeCode || null;
+        // Extract Payment Type Code
+        const paymentTypeCode = paymentFunctions?.[0]?.paymentProcessingSummary
+            ?.paymentProcessingSummaryPaymentMethod?.settlementPlan
+            ?.paymentTypeCode || "";
         // Extract segments (coupons)
         const segments = [];
         if (validTicket && validTicketIndex >= 0) {
@@ -635,6 +641,7 @@ function extractTickets(data) {
             segments,
             seatAmount,
             reportingTypeCode,
+            paymentTypeCode,
             ref: ticketDocPath,
         });
     });
