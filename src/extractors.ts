@@ -203,7 +203,7 @@ function extractPassengerInfo(
   }
 
   return {
-    paxRefId: passenger.paxRefId || passenger.paxId,
+    paxRefId: passenger.paxId || passenger.paxRefId,
     givenName: givenNames || null,
     surname: surname || null,
     middleName: middleNames || null,
